@@ -1,11 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\RestauranteController;
 
 /*
 |--------------------------------------------------------------------------
-| Web Routes
+| Web RoutescrearUsuario
 |--------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
@@ -15,3 +16,21 @@ use App\Http\Controllers\RestauranteController;
 */
 
 Route::get('/index', [RestauranteController::class, 'index']);
+
+/*Mostrar*/
+Route::get('/mostrarUsuarios',[UsuarioController::class, 'mostrarUsuarios']);
+
+Route::get('mostrarRestaurantes',[RestauranteController::class, 'mostrarRestaurantes']);
+
+/*Crear*/
+Route::get('crearUser',[UsuarioController::class, 'crearUsuario']);
+
+Route::post('crearUser',[UsuarioController::class, 'crearUsuarioPost']);
+
+/*Actualizar*/
+Route::get('modificarUsuario/{id}',[UsuarioController::class, 'modificarUsuario']);
+
+Route::put('modificarUsuario',[UsuarioController::class, 'modificarUsuarioPut']);
+
+/*Eliminar*/
+Route::delete('eliminarUsuario/{id}',[UsuarioController::class, 'eliminarUsuario']);
