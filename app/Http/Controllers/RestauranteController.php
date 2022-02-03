@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Restaurante;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class RestauranteController extends Controller
 {
@@ -14,7 +15,9 @@ class RestauranteController extends Controller
      */
     public function index()
     {
-        //
+        $tipo=DB::table('tbl_tipo')->select('*')->get();
+        $restaurantes=DB::table('tbl_restaurante')->select('*')->get();
+        return view('index', compact('tipo', 'restaurantes'));
     }
 
     /**
