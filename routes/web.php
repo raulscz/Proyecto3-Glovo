@@ -15,6 +15,8 @@ use App\Http\Controllers\RestauranteController;
 |
 */
 
+Route::get('/index', [RestauranteController::class, 'index']);
+
 /*Mostrar*/
 Route::get('/mostrarUsuarios',[UsuarioController::class, 'mostrarUsuarios']);
 

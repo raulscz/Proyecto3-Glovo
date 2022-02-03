@@ -12,6 +12,7 @@ use App\Mail\EnviarMensaje;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\PersonaCrear;
 
+
 class RestauranteController extends Controller
 {
     /*Mostrar*/
@@ -30,7 +31,9 @@ class RestauranteController extends Controller
      */
     public function index()
     {
-        //
+        $tipo=DB::table('tbl_tipo')->select('*')->get();
+        $restaurantes=DB::table('tbl_restaurante')->select('*')->get();
+        return view('index', compact('tipo', 'restaurantes'));
     }
 
     /**
