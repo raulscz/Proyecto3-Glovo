@@ -4,9 +4,85 @@ namespace App\Http\Controllers;
 
 use App\Models\Usuario;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use PhpParser\Node\Stmt\TryCatch;
+use App\Http\Controllers\Exception;
+use Illuminate\Support\Facades\Storage;
+use App\Mail\EnviarMensaje;
+use Illuminate\Support\Facades\Mail;
+use App\Http\Requests\CrearUsuario;
 
 class UsuarioController extends Controller
 {
+    /*Mostrar*/
+    public function mostrarUsuarios(){
+        $listaUsuarios = DB::table('tbl_rol')->join('tbl_user','tbl_rol.id','=','tbl_user.id_rol')->select('*')->get();
+        return view('mostrarUser', compact('listaUsuarios'));
+    }
+    /*Crear*/
+    public function crearUsuario(){
+        return view('crearUser');
+    }
+
+    public function crearUsuarioPost(CrearUsuario $request){
+        //return $request;
+        $datos = $request->except('_token');
+        $request->validate([
+            'nombre_user'=>'required|string|max:30',
+            'apellido_user'=>'required|string|max:30',
+            'dni_user'=>'required|string|max:9|min:9',
+            'edad_user'=>'required|int|min:18|max:130',
+            'correo_user'=>'required|string|max:40',
+            'pass_user'=>'required|string|min:8|max:20',
+            'nombre_rol'=>'required|string|'
+        ]);
+
+        try{
+            DB::beginTransaction();
+            $idRol = DB::table('tbl_rol')->select('id')->where('nombre_rol','=',$datos['nombre_rol'])->first();
+            DB::table('tbl_user')->insertGetId(["nombre_user"=>$datos['nombre_user'],"apellido_user"=>$datos['apellido_user'],"dni_user"=>$datos['dni_user'],"edad_user"=>$datos['edad_user'],"correo_user"=>$datos['correo_user'],"pass_user"=>$datos['pass_user'],"id_rol"=>$idRol->id]);
+            DB::commit();
+        }catch(\Exception $e){
+            DB::rollBack();
+            return $e->getMessage();
+        }
+        return redirect('mostrarUsuarios');
+    }
+    /*Modificar*/
+    public function modificarUsuario($id){
+        $Usuario = DB::table('tbl_rol')->join('tbl_user','tbl_rol.id','=','tbl_user.id_rol')->select('*')->where("tbl_user.id","=",$id)->first();
+        return view('modificarUser',compact('Usuario'));
+    }
+
+    public function modificarUsuarioPut(Request $request){
+        $datos = $request->except('_token','_method');
+        $datosUser = $request->except('_token','_method','nombre_rol');
+        try{
+            DB::beginTransaction();
+            $datos['id_rol'] = DB::table('tbl_rol')->select('id')->where('nombre_rol','=',$datos['nombre_rol'])->get();
+            DB::table('tbl_user')->where('id','=',$datosUser['id'])->update($datosUser);
+            DB::commit();
+        }catch(\Exception $e){
+            DB::rollBack();
+            return $e->getMessage();
+        }
+        return redirect('mostrarUsuarios');
+    }
+    /*Eliminar*/
+    public function eliminarUsuario($id){
+        try{
+            DB::beginTransaction();
+            DB::table('tbl_user')->where('id','=',$id)->delete();
+            DB::commit();
+        }catch(\Exception $e){
+            DB::rollBack();
+            return $e->getMessage();
+        }
+        return redirect('mostrarUsuarios');
+    }
+    /*Filtro*/
+
+
     /**
      * Display a listing of the resource.
      *
