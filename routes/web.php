@@ -15,12 +15,21 @@ use App\Http\Controllers\RestauranteController;
 |
 */
 
-Route::get('/index', [RestauranteController::class, 'index']);
+/*Login & Logout*/
+Route::get('', [UsuarioController::class, 'login']);
+
+Route::post('login', [UsuarioController::class, 'loginP']);
+
+Route::get('logout', [UsuarioController::class, 'logout']);
 
 /*Mostrar*/
+Route::get('cPanelAdmin', [UsuarioController::class, 'mostrarAdmin']);
+
 Route::get('/mostrarUsuarios',[UsuarioController::class, 'mostrarUsuarios']);
 
 Route::get('mostrarRestaurantes',[RestauranteController::class, 'mostrarRestaurantes']);
+
+Route::get('/index', [RestauranteController::class, 'index']);
 
 /*Crear*/
 Route::get('crearUser',[UsuarioController::class, 'crearUsuario']);

@@ -14,7 +14,33 @@ use App\Http\Requests\CrearUsuario;
 
 class UsuarioController extends Controller
 {
+    /*Login & Logout*/
+    public function login(){
+        return view('login');
+    }
+
+    public function loginP(Request $request){
+        $datos= $request->except('_token','_method');
+        $user=DB::table("tbl_rol")->join('tbl_user', 'tbl_rol.id', '=', 'tbl_user.id_rol')->where('correo_user','=',$datos['correo_user'])->where('pass_user','=',$datos['pass_user'])->first();
+        if($user->nombre_rol=='Administrador'){
+           $request->session()->put('nombre_admin',$request->correo_user);
+           return redirect('cPanelAdmin');
+        }else{
+            return view('index');
+        }
+        return view('');
+    }
+    public function logout(Request $request){
+        $request->session()->forget('nombre_admin');
+        $request->session()->flush();
+        return redirect('/');
+    }
+
     /*Mostrar*/
+    public function mostrarAdmin(){
+        return view('cPanelAdmin');
+    }
+
     public function mostrarUsuarios(){
         $listaUsuarios = DB::table('tbl_rol')->join('tbl_user','tbl_rol.id','=','tbl_user.id_rol')->select('*')->get();
         return view('mostrarUser', compact('listaUsuarios'));

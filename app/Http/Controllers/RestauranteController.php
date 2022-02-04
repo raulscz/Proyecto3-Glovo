@@ -16,6 +16,11 @@ use App\Http\Requests\PersonaCrear;
 class RestauranteController extends Controller
 {
     /*Mostrar*/
+    public function mostrarRestaurantes(){
+        $listaRestaurantes = DB::table("tbl_tipo")->join('tbl_restaurante', 'tbl_tipo.id', '=', 'tbl_restaurante.id')->select('*')->get();
+        return view('mostrarRestaurante', compact('listaRestaurantes'));
+    }
+
     /*Crear*/
 
     /*Modificar*/
