@@ -12,6 +12,7 @@ body {
     text-align: center;
     display: flex;
     flex-flow: column;
+    background-color: #ffc244;
 }
 
 
@@ -36,8 +37,8 @@ body {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: center;
-    color: #E1D9BE;
-    background-color: rgba(101, 115, 126);
+    color: white;
+    background-color: #00A082;
     border-right: 2pt solid rgba(17, 17, 17);
 }
 
@@ -46,7 +47,7 @@ body {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: center;
-    color: #000000;
+    color: black;
     border-right: 2pt solid rgba(17, 17, 17);
     font-weight: bold;
 }
@@ -57,11 +58,11 @@ body {
     border-right: 2pt solid rgba(17, 17, 17);
     border-top: 2pt solid rgba(17, 17, 17);
     border-bottom: 2pt solid rgba(17, 17, 17);
-    background-color: rgba(192, 197, 206);
+    background-color: #FFC224;
 }
 
 table tr:hover {
-    background-color: rgba(119, 119, 119);
+    background-color: #F9BC3F;
 }
 
 .botonTabla {
@@ -105,19 +106,25 @@ table tr:hover {
 /*Estilos Botones*/
 
 .btn {
-    padding: 5px 10px;
+    padding: 10px 30px;
     margin: 0px 10px 10px 0px;
     float: right;
-    border-radius: 10px;
+    border-radius: 50px;
     font-size: 15px;
     text-align: center;
-    color: black;
+    color: white;
+    font-weight: 700;
     text-decoration: none;
-    background-color: #bae1ff;
+    background-color: black;
     border-color: black;
-    border-bottom: 5px solid black;
     float: left;
     display: flex;
+}
+
+.btn:hover {
+    background-color: white;
+    /* Green */
+    color: black;
 }
 
 .btn:active {
@@ -127,9 +134,31 @@ table tr:hover {
 }
 
 #logout {
-    background-color: #ffdfba;
+    background-color: black;
+    color: white;
+}
+
+#logout:hover {
+    background-color: white;
+    /* Green */
+    color: black;
 }
 
 #vista {
-    background-color: skyblue;
+    background-color: black;
+    color: white;
+}
+
+#vista:hover {
+    background-color: white;
+    /* Green */
+    color: black;
+}
+
+
+/*modificao*/
+
+.centerdiv {
+    width: 23%;
+    margin: 0 auto;
 }
