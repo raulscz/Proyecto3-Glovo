@@ -20,29 +20,46 @@ header {
     display: flex;
     width: 100%;
     padding: 30px 7.5%;
-    z-index: 19;
+    z-index: 30;
     position: relative;
     height: 100px;
     box-sizing: border-box;
     display: flex;
     justify-content: space-between;
     box-shadow: 0 0 0px 0 #000000 inset, 0 0 10px 4px #00000056;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    background-color: #ffc244;
 }
 
-input[type='text'] {
+.busc {
+    display: flex;
     border-radius: 100px;
     border: none;
-    width: 400px;
-    height: 45px;
     background: #f5f5f5;
     color: grey;
     text-align: center;
+    width: 400px;
+    height: 45px;
+}
+
+.busc::placeholder {
+    color: grey;
     font-size: 16px;
 }
 
-input[type='text']::placeholder {
+.inp_txt2 {
+    border: none;
+    width: 60%;
+    height: 100%;
+    font-size: 16px;
+    background: #f5f5f5;
     color: grey;
-    text-align: center;
+}
+
+.inp_txt2::placeholder {
+    color: grey;
     font-size: 16px;
 }
 
@@ -58,6 +75,11 @@ input[type='text']::placeholder {
     cursor: pointer;
     box-shadow: 0 3px 5px 0 rgb(0 0 0 / 10%);
     margin: 0;
+}
+
+.empezar:hover {
+    color: #fff;
+    background-color: #00866e;
 }
 
 .tipo_rest {
@@ -100,4 +122,197 @@ input[type='text']::placeholder {
 .img_bt {
     width: 55px;
     height: 55px;
+}
+
+.rest {
+    background-color: white;
+}
+
+.landing-highlights-container__curve {
+    position: absolute;
+    width: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
+}
+
+.res {
+    display: flex;
+    flex-flow: row wrap;
+    width: 85%;
+    margin-left: 11%;
+}
+
+.cont_res {
+    padding: 10px;
+    width: 30%;
+    box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.11);
+    margin: 0.5%;
+    border-radius: 10px;
+}
+
+.cont_res img {
+    height: 150px;
+    width: 100%;
+    border-radius: 10px;
+}
+
+.ttl_rest {
+    font-size: 28px;
+    line-height: 1.2;
+    font-weight: 400;
+    text-align: left;
+    margin-left: 11.5%;
+    position: relative;
+    border-radius: 100px;
+    padding: 0 5px;
+    background-color: #ffc244;
+}
+
+.bar_res {
+    width: 100%;
+    background-color: white;
+    font-size: 14px;
+}
+
+
+/*Modal Box*/
+
+
+/* The Modal (background) */
+
+.modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 50;
+    /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+    overflow: hidden;
+}
+
+
+/* Modal Content/Box */
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%;
+    /* Could be more or less, depending on screen size */
+    height: auto;
+    border-radius: 15px;
+}
+
+
+/* The Close Button */
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.register {
+    text-align: center;
+    justify-content: center;
+    color: black;
+    display: block;
+}
+
+.register2 {
+    text-align: center;
+    justify-content: center;
+    color: black;
+    display: none;
+}
+
+.inp_txt {
+    border-radius: 100px;
+    border: none;
+    width: 400px;
+    height: 45px;
+    background: #f5f5f5;
+    color: grey;
+    text-align: center;
+    font-size: 16px;
+}
+
+.inp_txt::placeholder {
+    color: grey;
+    text-align: center;
+    font-size: 16px;
+}
+
+input[type='password'] {
+    border-radius: 100px;
+    border: none;
+    width: 400px;
+    height: 45px;
+    background: #f5f5f5;
+    color: grey;
+    text-align: center;
+    font-size: 16px;
+}
+
+input[type='password']::placeholder {
+    color: grey;
+    text-align: center;
+    font-size: 16px;
+}
+
+.btn_regis {
+    text-decoration: none;
+    padding: 10px 40px;
+    color: #fff;
+    background-color: #00a082;
+    font-size: 18px;
+    border-radius: 100px;
+    border: none;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0 3px 5px 0 rgb(0 0 0 / 10%);
+    margin: 0;
+}
+
+.btn_regis:hover {
+    color: white;
+    background-color: #00866e;
+}
+
+.btn_mostrar {
+    text-decoration: none;
+    color: #00a082;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.register p {
+    color: grey;
+}
+
+.register2 p {
+    color: grey;
 }
