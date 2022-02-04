@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="{!! asset('css/styles.css') !!}">
 </head>
 <body class="mostrar">
-    <div>
+    <div class="centerdiv">
         <form action="{{url('crearUser')}}" method="GET">
             <button class= "btn" type="submit" name="Crear" value="Crear">Crear</button>
         </form>
@@ -62,5 +62,7 @@
             @endforeach
         </table>
     </div>
+    
+    
 </body>
 </html>
