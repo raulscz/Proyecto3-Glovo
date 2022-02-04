@@ -9,7 +9,7 @@
     <link rel="shortcut icon" href="../uploads/logo.png" type="image/x-icon">
 </head>
 <body>
-    <header class="flex">
+    <header>
       <img src="https://res.cloudinary.com/glovoapp/image/fetch//q_auto/https://glovoapp.com/images/logo_green.svg" width="130" height="44">
       <form action="" onsubmit="">
         <input type="text" placeholder="Buscar">

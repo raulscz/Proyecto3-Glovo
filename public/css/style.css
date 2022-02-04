@@ -16,11 +16,8 @@ body {
     font-family: "Gotham", "Arial", "Helvetica Neue", Helvetica, sans-serif;
 }
 
-.flex {
-    display: flex;
-}
-
 header {
+    display: flex;
     width: 100%;
     padding: 30px 7.5%;
     z-index: 19;
