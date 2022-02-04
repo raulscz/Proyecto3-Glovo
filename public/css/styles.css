@@ -89,6 +89,18 @@ table tr:hover {
     background-color: #ffb3ba;
 }
 
+#btnDir {
+    background-color: #baffc9;
+}
+
+#btnSec {
+    background-color: #f1c27d;
+}
+
+#btnPla {
+    background-color: #be29ec;
+}
+
 
 /*Estilos Botones*/
 
