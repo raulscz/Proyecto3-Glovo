@@ -7,13 +7,16 @@
     <title>Pide a domicilio online con Glovo en Barcelona</title>
     <link rel="stylesheet" href="../public/css/style.css">
     <link rel="shortcut icon" href="../uploads/logo.png" type="image/x-icon">
+    <script src="js/ajax.js"></script>
+    <meta name="csrf-token" id="token" content="{{ csrf_token() }}">
+
 </head>
 <body>
     <header class="flex">
       <img src="https://res.cloudinary.com/glovoapp/image/fetch//q_auto/https://glovoapp.com/images/logo_green.svg" width="130" height="44">
-      <form action="" onsubmit="">
-        <input type="text" placeholder="Buscar">
-      </form>
+     
+        <input type="text" id="leerajaxhtml" placeholder="Buscar" onkeyup="leerJS()">
+     
         <button class="empezar"><b>Empezar</b></button>
     </header>
       <div class="tipo_rest">
@@ -23,7 +26,7 @@
             </div>
         @endforeach
     </div>
-    <div class="rest">
+    <div id="idrestaurante" class="rest">
       @foreach ($restaurantes as $item)
             <div>
                 <h3>{{$item->nombre_resta}}</h3>

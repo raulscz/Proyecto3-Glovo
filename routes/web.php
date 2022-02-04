@@ -43,3 +43,8 @@ Route::put('modificarUsuario',[UsuarioController::class, 'modificarUsuarioPut'])
 
 /*Eliminar*/
 Route::delete('eliminarUsuario/{id}',[UsuarioController::class, 'eliminarUsuario']);
+
+/*AJAX*/
+
+//Leer con AJAX
+Route::post('leer',[UsuarioController::class, 'leerController']);
