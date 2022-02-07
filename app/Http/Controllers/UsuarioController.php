@@ -107,7 +107,12 @@ class UsuarioController extends Controller
         return redirect('mostrarUsuarios');
     }
     /*Filtro*/
+    /*AJAX*/
 
+    public function leercontroller(Request $request){
+        $datos=DB::select('select * from tbl_restaurante where nombre_resta like ?',['%'.$request->input('filtrocontrolador').'%']);
+        return response()->json($datos);
+    }
 
     /**
      * Display a listing of the resource.
