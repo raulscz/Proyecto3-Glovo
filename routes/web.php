@@ -46,6 +46,13 @@ Route::get('crearRestaurante',[RestauranteController::class, 'crearRestaurante']
 
 Route::post('crearRestaurante',[RestauranteController::class, 'crearRestaurantePost']);
 
+
+/*REGISTRAR*/
+Route::get('registrarUser',[UsuarioController::class, 'registrarUsuario']);
+
+Route::post('registrarUser',[UsuarioController::class, 'registrarUsuarioPost']);
+
+
 Route::get('crearSecciones',[RestauranteController::class, 'crearSecciones']);
 
 Route::post('crearSecciones',[RestauranteController::class, 'crearSeccionesPost']);
@@ -57,6 +64,7 @@ Route::post('crearDireccion',[RestauranteController::class, 'crearDireccionPost'
 Route::get('crearPlato',[RestauranteController::class, 'crearPlato']);
 
 Route::post('crearPlato',[RestauranteController::class, 'crearPlatoPost']);
+
 
 /*Actualizar*/
 Route::get('modificarUsuario/{id}',[UsuarioController::class, 'modificarUsuario']);
