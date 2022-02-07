@@ -29,6 +29,12 @@ Route::get('/mostrarUsuarios',[UsuarioController::class, 'mostrarUsuarios']);
 
 Route::get('mostrarRestaurantes',[RestauranteController::class, 'mostrarRestaurantes']);
 
+Route::get('mostrarDirecciones/{id}',[RestauranteController::class, 'mostrarDirecciones']);
+
+Route::get('mostrarSecciones/{id}',[RestauranteController::class, 'mostrarSecciones']);
+
+Route::get('mostrarPlatos/{id}',[RestauranteController::class, 'mostrarPlatos']);
+
 Route::get('/index', [RestauranteController::class, 'index']);
 
 /*Crear*/
@@ -36,15 +42,30 @@ Route::get('crearUser',[UsuarioController::class, 'crearUsuario']);
 
 Route::post('crearUser',[UsuarioController::class, 'crearUsuarioPost']);
 
+Route::get('crearRestaurante',[RestauranteController::class, 'crearRestaurante']);
+
+Route::post('crearRestaurante',[RestauranteController::class, 'crearRestaurantePost']);
+
 /*Actualizar*/
 Route::get('modificarUsuario/{id}',[UsuarioController::class, 'modificarUsuario']);
 
 Route::put('modificarUsuario',[UsuarioController::class, 'modificarUsuarioPut']);
 
+Route::get('modificarRestaurante/{id}',[RestauranteController::class, 'modificarRestaurante']);
+
+Route::put('modificarRestaurante',[RestauranteController::class, 'modificarRestaurantePut']);
+
 /*Eliminar*/
 Route::delete('eliminarUsuario/{id}',[UsuarioController::class, 'eliminarUsuario']);
+
+Route::get('tipo_rest/{id}',[RestauranteController::class, 'tipo_rest']);
 
 /*AJAX*/
 
 //Leer con AJAX
 Route::post('leer',[UsuarioController::class, 'leerController']);
+
+Route::delete('eliminarRestaurante/{id}',[RestauranteController::class, 'eliminarRestaurante']);
+
+/*Filtro*/
+Route::post('/shows', [RestauranteController::class, 'filtroRestauranteAjax']);
