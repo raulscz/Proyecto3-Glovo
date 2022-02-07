@@ -65,7 +65,6 @@ function leerJS() {
         if (ajax.readyState == 4 && ajax.status == 200) {
             var respuesta = JSON.parse(this.responseText);
             var recarga = '';
-            recarga += '<tr><td>ID</td><td>NOMBRE</td></tr>';
             /* Leerá la respuesta que es devuelta por el controlador: */
             for (let i = 0; i < respuesta.length; i++) {
                 recarga += '<tr>';
