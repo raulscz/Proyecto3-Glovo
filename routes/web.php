@@ -58,8 +58,6 @@ Route::put('modificarRestaurante',[RestauranteController::class, 'modificarResta
 /*Eliminar*/
 Route::delete('eliminarUsuario/{id}',[UsuarioController::class, 'eliminarUsuario']);
 
-Route::get('tipo_rest/{id}',[RestauranteController::class, 'tipo_rest']);
-
 /*AJAX*/
 
 //Leer con AJAX
@@ -69,3 +67,6 @@ Route::delete('eliminarRestaurante/{id}',[RestauranteController::class, 'elimina
 
 /*Filtro*/
 Route::post('/shows', [RestauranteController::class, 'filtroRestauranteAjax']);
+
+/*Tipos restaurantes*/
+Route::get('tipo_rest/{id}',[RestauranteController::class, 'tipo_rest']);

@@ -23,7 +23,7 @@
       <div class="tipo_rest">
         @foreach ($tipo as $item)
           <div>
-            <form action="{{url('tipo_rest')}}" method="GET">
+            <form action="{{url('tipo_rest/'.$item->id)}}" method="GET">
               <button class="tipos"><img class="img_bt" src="../public/uploads/{{$item->img_tipo}}"><br>{{$item->nombre_tipo}}</button>
             </form>
           </div>
@@ -70,7 +70,7 @@
                 <span><i class="fas fa-lock"></i></span>
                 <input type="password" name="pass_user" placeholder="Introduce tu contraseña">
                 <br><br>
-                <button class="btn_regis" type="submit" value="register">Resgistrarme</button><br><br>
+                <button class="btn_regis" type="submit" value="register">Registrarme</button><br><br>
               </form>
               <p>¿Ya tienes una cuenta? <button class="btn_mostrar" onclick="mostrarlog();" id="btn_regis">Inicia sesión</button></p>
           </div>
