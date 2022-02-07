@@ -51,18 +51,8 @@ class UsuarioController extends Controller
     }
 
     public function crearUsuarioPost(CrearUsuario $request){
-        //return $request;
         $datos = $request->except('_token');
-        $request->validate([
-            'nombre_user'=>'required|string|max:30',
-            'apellido_user'=>'required|string|max:30',
-            'dni_user'=>'required|string|max:9|min:9',
-            'edad_user'=>'required|int|min:18|max:130',
-            'correo_user'=>'required|string|max:40',
-            'pass_user'=>'required|string|min:8|max:20',
-            'nombre_rol'=>'required|string|'
-        ]);
-
+        
         try{
             DB::beginTransaction();
             $idRol = DB::table('tbl_rol')->select('id')->where('nombre_rol','=',$datos['nombre_rol'])->first();

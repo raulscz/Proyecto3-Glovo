@@ -11,6 +11,9 @@ use Illuminate\Support\Facades\Storage;
 use App\Mail\EnviarMensaje;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\CrearRestaurante;
+use App\Http\Requests\CrearSecciones;
+use App\Http\Requests\CrearDireccion;
+use App\Http\Requests\CrearPlatos;
 
 
 class RestauranteController extends Controller
@@ -22,16 +25,20 @@ class RestauranteController extends Controller
     }
 
     public function mostrarDirecciones($id){
-
+        $listaDirecciones = DB::table('tbl_restaurante')->join('tbl_dirección','tbl_restaurante.id', '=', 'tbl_dirección.id_resta')->select('*')->where('tbl_restaurante.id','=',$id)->get();
+        return view('mostrarDirecciones', compact('listaDirecciones'));
     }
 
     public function mostrarSecciones($id){
-
+        $listaSecciones = DB::table('tbl_restaurante')->join('tbl_seccion','tbl_restaurante.id','=','tbl_seccion.id_resta')->select('*')->where('tbl_restaurante.id','=',$id)->get();
+        return view('mostrarSecciones', compact('listaSecciones'));
     }
 
     public function mostrarPlatos($id){
-
+        $listaPlatos = DB::table('tbl_seccion')->join('tbl_plato','tbl_seccion.id','=','tbl_plato.id_seccion')->select('*')->where('tbl_plato.id_seccion','=',$id)->get();
+        return view('mostrarPlatos', compact('listaPlatos'));
     }
+
     /*Crear*/
     public function crearRestaurante(){
         $listaTipo = DB::table("tbl_tipo")->select('*')->get();
@@ -39,15 +46,8 @@ class RestauranteController extends Controller
     }
 
     public function crearRestaurantePost(CrearRestaurante $request){
+        //return "Hola";
         $datos = $request->except('_token');
-        return $datos;
-        $request->validate([
-            'nombre_resta'=>'required|string|max:30',
-            'desc_resta'=>'required|string|max:250',
-            'horario_ini_resta'=>'required',
-            'horario_fi_resta'=>'required',
-            'id_rol'=>'required'
-        ]);
 
         if($request->hasFile('img_resta')){
             $datos['img_resta'] = $request->file('img_resta')->store('uploads','public');
@@ -65,6 +65,73 @@ class RestauranteController extends Controller
         }
         return redirect('mostrarRestaurantes');
     }
+
+    public function crearSecciones(){
+        return view('crearSecciones');
+    }
+
+    public function crearSeccionesPost(CrearSecciones $request){
+        $datos = $request->except('_token');
+
+        if($request->hasFile('img_seccion')){
+            $datos['img_seccion'] = $request->file('img_seccion')->store('uploads','public');
+        }else{
+            $datos['img_seccion'] = NULL;
+        }
+
+        try {
+            DB::beginTransaction();
+            DB::table('tbl_seccion')->InsertGetId(["img_seccion"=>$datos['img_seccion'],"nombre_seccion"=>$datos['nombre_seccion'],"id_resta"=>$datos['id_resta']]);
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return $e->getMessage();
+        }
+        return redirect('mostrarRestaurantes');
+    }
+
+    public function crearDireccion(){
+        return view('crearDireccion');
+    }
+
+    public function crearDireccionPost(CrearDireccion $request){
+        //return $request;
+        $datos = $request->except('_token');
+        try {
+            DB::beginTransaction();
+            DB::table('tbl_dirección')->InsertGetId(["direccion_resta"=>$datos['direccion_resta'],"id_resta"=>$datos['id_resta']]);
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return $e->getMessage();
+        }
+        return redirect('mostrarRestaurantes');
+    }
+
+    public function crearPlato(){
+        return view('crearPlato');
+    }
+
+    public function crearPlatoPost(CrearPlatos $request){
+        $datos = $request->except('_token');
+
+        if($request->hasFile('img_plato')){
+            $datos['img_plato'] = $request->file('img_plato')->store('uploads','public');
+        }else{
+            $datos['img_plato'] = NULL;
+        }
+
+        try {
+            DB::beginTransaction();
+            DB::table('tbl_plato')->InsertGetId(["img_plato"=>$datos['img_plato'],"nombre_plato"=>$datos['nombre_plato'],"desc_plato"=>$datos['desc_plato'],"precio_plato"=>$datos['precio_plato'],"id_seccion"=>$datos['id_seccion']]);
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return $e->getMessage();
+        }
+        return redirect('mostrarRestaurantes');
+    }
+
     /*Modificar*/
     public function modificarRestaurante($id){
         $restaurante = DB::table("tbl_tipo")->join('tbl_restaurante', 'tbl_tipo.id', '=', 'tbl_restaurante.id_tipo')->select()->where('tbl_restaurante.id','=',$id)->first();
@@ -97,11 +164,126 @@ class RestauranteController extends Controller
         return redirect('mostrarRestaurantes');
     }
 
+    public function modificarSeccion($id){
+        $Seccion = DB::table('tbl_seccion')->select('*')->where('id','=',$id)->first();
+        return view('modificarSeccion',compact('Seccion'));
+    }
+
+    public function modificarSeccionPut(Request $request){
+        $datos=$request->except('_token','_method');
+
+        if ($request->hasFile('img_seccion')) {
+            $foto = DB::table('tbl_seccion')->select('img_seccion')->where('id','=',$request['id'])->first();
+            if ($foto->img_seccion != null) {
+                Storage::delete('public/'.$foto->img_seccion);
+            }
+            $datos['img_seccion'] = $request->file('img_seccion')->store('uploads','public');
+        }else{
+            $foto = DB::table('tbl_seccion')->select('img_seccion')->where('id','=',$request['id'])->first();
+            $datos['img_seccion'] = $foto->img_seccion;
+        }
+
+        try {
+            DB::beginTransaction();
+            DB::table('tbl_seccion')->where('id','=',$datos['id'])->update($datos);
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return $e->getMessage();
+        }
+        return redirect('mostrarRestaurantes');
+    }
+
+    public function modificarDireccion($id){
+        $Direccion = DB::table('tbl_restaurante')->join('tbl_dirección','tbl_restaurante.id','=','tbl_dirección.id_resta')->select('*')->where('tbl_dirección.id','=',$id)->first();
+        return view('modificarDireccion',compact('Direccion'));
+    }
+
+    public function modificarDireccionPut(Request $request){
+        $datos=$request->except('_token','_method');
+
+        try {
+            DB::beginTransaction();
+            DB::table('tbl_dirección')->where('id','=',$datos['id'])->update($datos);
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return $e->getMessage();
+        }
+        return redirect('mostrarRestaurantes');
+    }
+
+    public function modificarPlato($id){
+        $Plato = DB::table('tbl_seccion')->join('tbl_plato','tbl_seccion.id','=','tbl_plato.id_seccion')->select('*')->where('tbl_plato.id','=',$id)->first();
+        return view('modificarPlato',compact('Plato'));
+    }
+
+    public function modificarPlatoPut(Request $request){
+        $datos=$request->except('_token','_method');
+
+        if ($request->hasFile('img_plato')) {
+            $foto = DB::table('tbl_plato')->select('img_plato')->where('id','=',$request['id'])->first();
+            if ($foto->img_plato != null) {
+                Storage::delete('public/'.$foto->img_plato);
+            }
+            $datos['img_plato'] = $request->file('img_plato')->store('uploads','public');
+        }else{
+            $foto = DB::table('tbl_plato')->select('img_plato')->where('id','=',$request['id'])->first();
+            $datos['img_plato'] = $foto->img_plato;
+        }
+
+        try {
+            DB::beginTransaction();
+            DB::table('tbl_plato')->where('id','=',$datos['id'])->update($datos);
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return $e->getMessage();
+        }
+        return redirect('mostrarRestaurantes');
+    }
+
     /*Eliminar*/
     public function eliminarRestaurante($id){
         try{
             DB::beginTransaction();
             DB::table('tbl_restaurante')->where('id','=',$id)->delete();
+            DB::commit();
+        }catch(\Exception $e){
+            DB::rollBack();
+            return $e->getMessage();
+        }
+        return redirect('mostrarRestaurantes');
+    }
+
+    public function eliminarSeccion($id){
+        try{
+            DB::beginTransaction();
+            DB::table('tbl_seccion')->where('id','=',$id)->delete();
+            DB::commit();
+        }catch(\Exception $e){
+            DB::rollBack();
+            return $e->getMessage();
+        }
+        return redirect('mostrarRestaurantes');
+    }
+
+    public function eliminarDireccion($id){
+        try{
+            DB::beginTransaction();
+            DB::table('tbl_dirección')->where('id','=',$id)->delete();
+            DB::commit();
+        }catch(\Exception $e){
+            DB::rollBack();
+            return $e->getMessage();
+        }
+        return redirect('mostrarRestaurantes');
+    }
+
+    public function eliminarPlato($id){
+        try{
+            DB::beginTransaction();
+            DB::table('tbl_plato')->where('id','=',$id)->delete();
             DB::commit();
         }catch(\Exception $e){
             DB::rollBack();
@@ -189,7 +371,8 @@ class RestauranteController extends Controller
         //
     }
 
-    public function tipo_rest(){
-        
+    public function tipo_rest($id){
+        $datos_tipo = DB::table("tbl_tipo")->join('tbl_restaurante', 'tbl_tipo.id', '=', 'tbl_restaurante.id_tipo')->select()->where('tbl_tipo.id','=',$id)->get();
+        return view('tipo_rest', compact('datos_tipo'));
     }
 }

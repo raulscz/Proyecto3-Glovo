@@ -46,10 +46,24 @@ Route::get('crearRestaurante',[RestauranteController::class, 'crearRestaurante']
 
 Route::post('crearRestaurante',[RestauranteController::class, 'crearRestaurantePost']);
 
+
 /*REGISTRAR*/
 Route::get('registrarUser',[UsuarioController::class, 'registrarUsuario']);
 
 Route::post('registrarUser',[UsuarioController::class, 'registrarUsuarioPost']);
+
+
+Route::get('crearSecciones',[RestauranteController::class, 'crearSecciones']);
+
+Route::post('crearSecciones',[RestauranteController::class, 'crearSeccionesPost']);
+
+Route::get('crearDireccion',[RestauranteController::class, 'crearDireccion']);
+
+Route::post('crearDireccion',[RestauranteController::class, 'crearDireccionPost']);
+
+Route::get('crearPlato',[RestauranteController::class, 'crearPlato']);
+
+Route::post('crearPlato',[RestauranteController::class, 'crearPlatoPost']);
 
 
 /*Actualizar*/
@@ -61,17 +75,40 @@ Route::get('modificarRestaurante/{id}',[RestauranteController::class, 'modificar
 
 Route::put('modificarRestaurante',[RestauranteController::class, 'modificarRestaurantePut']);
 
+Route::get('modificarSeccion/{id}',[RestauranteController::class, 'modificarSeccion']);
+
+Route::put('modificarSeccion',[RestauranteController::class, 'modificarSeccionPut']);
+
+Route::get('modificarDireccion/{id}',[RestauranteController::class, 'modificarDireccion']);
+
+Route::put('modificarDireccion',[RestauranteController::class, 'modificarDireccionPut']);
+
+Route::get('modificarPlato/{id}',[RestauranteController::class, 'modificarPlato']);
+
+Route::put('modificarPlato',[RestauranteController::class, 'modificarPlatoPut']);
+
 /*Eliminar*/
 Route::delete('eliminarUsuario/{id}',[UsuarioController::class, 'eliminarUsuario']);
 
-Route::get('tipo_rest/{id}',[RestauranteController::class, 'tipo_rest']);
+Route::delete('eliminarRestaurante/{id}',[RestauranteController::class, 'eliminarRestaurante']);
+
+Route::delete('eliminarSeccion/{id}',[RestauranteController::class, 'eliminarSeccion']);
+
+Route::delete('eliminarDireccion/{id}',[RestauranteController::class, 'eliminarDireccion']);
+
+Route::delete('eliminarPlato/{id}',[RestauranteController::class, 'eliminarPlato']);
+/*AJAX*/
+
+//Leer con AJAX
+Route::post('leer',[UsuarioController::class, 'leerController']);
 
 /*AJAX*/
 
 //Leer con AJAX
 Route::post('leer',[UsuarioController::class, 'leerController']);
 
-Route::delete('eliminarRestaurante/{id}',[RestauranteController::class, 'eliminarRestaurante']);
-
 /*Filtro*/
 Route::post('/shows', [RestauranteController::class, 'filtroRestauranteAjax']);
+
+/*Tipos restaurantes*/
+Route::get('tipo_rest/{id}',[RestauranteController::class, 'tipo_rest']);
