@@ -50,6 +50,10 @@ Route::get('crearSecciones',[RestauranteController::class, 'crearSecciones']);
 
 Route::post('crearSecciones',[RestauranteController::class, 'crearSeccionesPost']);
 
+Route::get('crearDireccion',[RestauranteController::class, 'crearDireccion']);
+
+Route::post('crearDireccion',[RestauranteController::class, 'crearDireccionPost']);
+
 /*Actualizar*/
 Route::get('modificarUsuario/{id}',[UsuarioController::class, 'modificarUsuario']);
 
@@ -63,12 +67,18 @@ Route::get('modificarSeccion/{id}',[RestauranteController::class, 'modificarSecc
 
 Route::put('modificarSeccion',[RestauranteController::class, 'modificarSeccionPut']);
 
+Route::get('modificarDireccion/{id}',[RestauranteController::class, 'modificarDireccion']);
+
+Route::put('modificarDireccion',[RestauranteController::class, 'modificarDireccionPut']);
+
 /*Eliminar*/
 Route::delete('eliminarUsuario/{id}',[UsuarioController::class, 'eliminarUsuario']);
 
 Route::delete('eliminarRestaurante/{id}',[RestauranteController::class, 'eliminarRestaurante']);
 
 Route::delete('eliminarSeccion/{id}',[RestauranteController::class, 'eliminarSeccion']);
+
+Route::delete('eliminarDireccion/{id}',[RestauranteController::class, 'eliminarDireccion']);
 
 /*Filtro*/
 Route::post('/shows', [RestauranteController::class, 'filtroRestauranteAjax']);

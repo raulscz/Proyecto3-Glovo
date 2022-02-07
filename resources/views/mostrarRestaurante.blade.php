@@ -56,6 +56,7 @@
                         <button class= "botonTabla" type="submit" name="Modificar" value="Modificar">Modificar</button>
                     </form></td>
                     <td><form  action="{{url('mostrarDirecciones/'.$restaurante->id)}}" method="GET">
+                        <input type="hidden" name="id_resta" value="{{$restaurante->id}}">
                         <button class= "botonTabla" type="submit" value="Direcciones" id="btnDir">Direcciones</button>
                     </form></td>
                     <td><form  action="{{url('mostrarSecciones/'.$restaurante->id)}}" method="GET">

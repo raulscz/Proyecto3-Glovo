@@ -12,6 +12,7 @@ use App\Mail\EnviarMensaje;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\CrearRestaurante;
 use App\Http\Requests\CrearSecciones;
+use App\Http\Requests\CrearDireccion;
 
 
 class RestauranteController extends Controller
@@ -23,7 +24,8 @@ class RestauranteController extends Controller
     }
 
     public function mostrarDirecciones($id){
-
+        $listaDirecciones = DB::table('tbl_restaurante')->join('tbl_dirección','tbl_restaurante.id', '=', 'tbl_dirección.id_resta')->select('*')->where('tbl_restaurante.id','=',$id)->get();
+        return view('mostrarDirecciones', compact('listaDirecciones'));
     }
 
     public function mostrarSecciones($id){
@@ -40,17 +42,9 @@ class RestauranteController extends Controller
         return view('crearRestaurante',compact('listaTipo'));
     }
 
-    public function crearRestaurantePost(Request $request){
+    public function crearRestaurantePost(CrearRestaurante $request){
         //return "Hola";
         $datos = $request->except('_token');
-        $request->validate([
-            'nombre_resta'=>'required|string|max:30',
-            'desc_resta'=>'required|string|max:250',
-            'horario_ini_resta'=>'required',
-            'horario_fi_resta'=>'required',
-            'id_tipo'=>'required',
-            'img_resta'=>'required|mimes:jpg,png,jpeg,webp,svg|max:2048'
-        ]);
 
         if($request->hasFile('img_resta')){
             $datos['img_resta'] = $request->file('img_resta')->store('uploads','public');
@@ -75,10 +69,6 @@ class RestauranteController extends Controller
 
     public function crearSeccionesPost(CrearSecciones $request){
         $datos = $request->except('_token');
-        $request->validate([
-            'nombre_seccion'=>'required|string|max:30',
-            'img_seccion'=>'required|mimes:jpg,png,jpeg,webp,svg'
-        ]);
 
         if($request->hasFile('img_seccion')){
             $datos['img_seccion'] = $request->file('img_seccion')->store('uploads','public');
@@ -94,9 +84,26 @@ class RestauranteController extends Controller
             DB::rollBack();
             return $e->getMessage();
         }
-        return redirect('mostrarSecciones');
+        return redirect('mostrarRestaurantes');
     }
 
+    public function crearDireccion(){
+        return view('crearDireccion');
+    }
+
+    public function crearDireccionPost(CrearDireccion $request){
+        //return $request;
+        $datos = $request->except('_token');
+        try {
+            DB::beginTransaction();
+            DB::table('tbl_dirección')->InsertGetId(["direccion_resta"=>$datos['direccion_resta'],"id_resta"=>$datos['id_resta']]);
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return $e->getMessage();
+        }
+        return redirect('mostrarRestaurantes');
+    }
     /*Modificar*/
     public function modificarRestaurante($id){
         $restaurante = DB::table("tbl_tipo")->join('tbl_restaurante', 'tbl_tipo.id', '=', 'tbl_restaurante.id_tipo')->select()->where('tbl_restaurante.id','=',$id)->first();
@@ -159,6 +166,24 @@ class RestauranteController extends Controller
         return redirect('mostrarRestaurantes');
     }
 
+    public function modificarDireccion($id){
+        $Direccion = DB::table('tbl_restaurante')->join('tbl_dirección','tbl_restaurante.id','=','tbl_dirección.id_resta')->select('*')->where('tbl_dirección.id','=',$id)->first();
+        return view('modificarDireccion',compact('Direccion'));
+    }
+
+    public function modificarDireccionPut(Request $request){
+        $datos=$request->except('_token','_method');
+
+        try {
+            DB::beginTransaction();
+            DB::table('tbl_dirección')->where('id','=',$datos['id'])->update($datos);
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return $e->getMessage();
+        }
+        return redirect('mostrarRestaurantes');
+    }
     /*Eliminar*/
     public function eliminarRestaurante($id){
         try{
@@ -176,6 +201,18 @@ class RestauranteController extends Controller
         try{
             DB::beginTransaction();
             DB::table('tbl_seccion')->where('id','=',$id)->delete();
+            DB::commit();
+        }catch(\Exception $e){
+            DB::rollBack();
+            return $e->getMessage();
+        }
+        return redirect('mostrarRestaurantes');
+    }
+
+    public function eliminarDireccion($id){
+        try{
+            DB::beginTransaction();
+            DB::table('tbl_dirección')->where('id','=',$id)->delete();
             DB::commit();
         }catch(\Exception $e){
             DB::rollBack();

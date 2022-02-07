@@ -18,31 +18,20 @@
         $id = $_REQUEST['id_resta'];
       ?>
       <div class="cuadro_crear">
-        <form action="{{url('crearSecciones')}}" method="post" enctype="multipart/form-data">
+        <form action="{{url('crearDireccion')}}" method="post" enctype="multipart/form-data">
           @csrf
-          <h1>CREAR SECCION</h1>
+          <h1>CREAR DIRECCIÓN</h1>
           <br>
           <div class="form-group">
-            <p>Nombre SECCION:</p>
+            <p>Nombre Dirección:</p>
             <div>
-                <input class="inputcrear" type="text" name="nombre_seccion" placeholder="Introduce el nombre..." value="{{old('nombre_seccion')}}">
-                @error('nombre_seccion')
+                <input class="inputcrear" type="text" name="direccion_resta" placeholder="Introduce la dirección..." value="{{old('direccion_resta')}}">
+                @error('direccion_resta')
                     <br>
                     {{$message}}
                 @enderror
             </div>
           </div>
-          <div class="form-group">
-            <p>Imagen:</p>
-            <div>
-                <input type="file" name="img_seccion">
-                @error('img_seccion')
-                    <br>
-                    {{$message}}
-                @enderror
-            </div>
-          </div>
-          <br><br>
           <div class="form-group">
             <input type="hidden" name="id_resta" value="<?php echo $id ?>">
             <input class= "botoncrear" type="submit" value="Crear">
