@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Mail\EnviarMensaje;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\CrearRestaurante;
+use App\Http\Requests\CrearSecciones;
 
 
 class RestauranteController extends Controller
@@ -26,7 +27,8 @@ class RestauranteController extends Controller
     }
 
     public function mostrarSecciones($id){
-
+        $listaSecciones = DB::table('tbl_restaurante')->join('tbl_seccion','tbl_restaurante.id','=','tbl_seccion.id_resta')->select('*')->where('tbl_restaurante.id','=',$id)->get();
+        return view('mostrarSecciones', compact('listaSecciones'));
     }
 
     public function mostrarPlatos($id){
@@ -38,15 +40,16 @@ class RestauranteController extends Controller
         return view('crearRestaurante',compact('listaTipo'));
     }
 
-    public function crearRestaurantePost(CrearRestaurante $request){
+    public function crearRestaurantePost(Request $request){
+        //return "Hola";
         $datos = $request->except('_token');
-        return $datos;
         $request->validate([
             'nombre_resta'=>'required|string|max:30',
             'desc_resta'=>'required|string|max:250',
             'horario_ini_resta'=>'required',
             'horario_fi_resta'=>'required',
-            'id_rol'=>'required'
+            'id_tipo'=>'required',
+            'img_resta'=>'required|mimes:jpg,png,jpeg,webp,svg|max:2048'
         ]);
 
         if($request->hasFile('img_resta')){
@@ -65,6 +68,35 @@ class RestauranteController extends Controller
         }
         return redirect('mostrarRestaurantes');
     }
+
+    public function crearSecciones(){
+        return view('crearSecciones');
+    }
+
+    public function crearSeccionesPost(CrearSecciones $request){
+        $datos = $request->except('_token');
+        $request->validate([
+            'nombre_seccion'=>'required|string|max:30',
+            'img_seccion'=>'required|mimes:jpg,png,jpeg,webp,svg'
+        ]);
+
+        if($request->hasFile('img_seccion')){
+            $datos['img_seccion'] = $request->file('img_seccion')->store('uploads','public');
+        }else{
+            $datos['img_seccion'] = NULL;
+        }
+
+        try {
+            DB::beginTransaction();
+            DB::table('tbl_seccion')->InsertGetId(["img_seccion"=>$datos['img_seccion'],"nombre_seccion"=>$datos['nombre_seccion'],"id_resta"=>$datos['id_resta']]);
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return $e->getMessage();
+        }
+        return redirect('mostrarSecciones');
+    }
+
     /*Modificar*/
     public function modificarRestaurante($id){
         $restaurante = DB::table("tbl_tipo")->join('tbl_restaurante', 'tbl_tipo.id', '=', 'tbl_restaurante.id_tipo')->select()->where('tbl_restaurante.id','=',$id)->first();
@@ -97,11 +129,53 @@ class RestauranteController extends Controller
         return redirect('mostrarRestaurantes');
     }
 
+    public function modificarSeccion($id){
+        $Seccion = DB::table('tbl_seccion')->select('*')->where('id','=',$id)->first();
+        return view('modificarSeccion',compact('Seccion'));
+    }
+
+    public function modificarSeccionPut(Request $request){
+        $datos=$request->except('_token','_method');
+
+        if ($request->hasFile('img_seccion')) {
+            $foto = DB::table('tbl_seccion')->select('img_seccion')->where('id','=',$request['id'])->first();
+            if ($foto->img_seccion != null) {
+                Storage::delete('public/'.$foto->img_seccion);
+            }
+            $datos['img_seccion'] = $request->file('img_seccion')->store('uploads','public');
+        }else{
+            $foto = DB::table('tbl_seccion')->select('img_seccion')->where('id','=',$request['id'])->first();
+            $datos['img_seccion'] = $foto->img_seccion;
+        }
+
+        try {
+            DB::beginTransaction();
+            DB::table('tbl_seccion')->where('id','=',$datos['id'])->update($datos);
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return $e->getMessage();
+        }
+        return redirect('mostrarRestaurantes');
+    }
+
     /*Eliminar*/
     public function eliminarRestaurante($id){
         try{
             DB::beginTransaction();
             DB::table('tbl_restaurante')->where('id','=',$id)->delete();
+            DB::commit();
+        }catch(\Exception $e){
+            DB::rollBack();
+            return $e->getMessage();
+        }
+        return redirect('mostrarRestaurantes');
+    }
+
+    public function eliminarSeccion($id){
+        try{
+            DB::beginTransaction();
+            DB::table('tbl_seccion')->where('id','=',$id)->delete();
             DB::commit();
         }catch(\Exception $e){
             DB::rollBack();
