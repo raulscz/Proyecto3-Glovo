@@ -9,6 +9,9 @@
     <link rel="shortcut icon" href="../public/uploads/logo.png" type="image/x-icon">
     <script src="js/iconos_g.js"></script>
     <script src="js/code.js"></script>
+    <link rel="shortcut icon" href="../uploads/logo.png" type="image/x-icon">
+    <script src="js/ajax.js"></script>
+    <meta name="csrf-token" id="token" content="{{ csrf_token() }}">
 </head>
 <body>
     <header>
@@ -16,7 +19,9 @@
       <form action="" onsubmit="">
           <input class="inp_txt" type="text" placeholder="🔎 Buscar">
       </form>
-        <button class="empezar" id="myBtn"><b>Empezar</b></button>
+        <button class="empezar" id="myBtn"><b>Empezar</b></button>     
+        <input type="text" id="leerajaxhtml" placeholder="Buscar" onkeyup="leerJS()">
+        <button class="empezar"><b>Empezar</b></button>
     </header>
     <div class="yellow">
       <div class="tipo_rest">
@@ -45,6 +50,10 @@
                 <div class="bar_res">
                   <span><b>{{$item->nombre_resta}}</b></span>
                 </div>
+    <div id="idrestaurante" class="rest">
+      @foreach ($restaurantes as $item)
+            <div>
+                <h3>{{$item->nombre_resta}}</h3>
             </div>
           @endforeach
         </div>
