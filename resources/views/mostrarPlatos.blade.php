@@ -16,11 +16,11 @@
 </head>
 <body class="mostrar">
     <?php
-        $id = $_REQUEST['id_resta'];
+        $id = $_REQUEST['id_seccion'];
     ?>
     <div>
-        <form action="{{url('crearSecciones')}}" method="GET">
-            <input type="hidden" name="id_resta" value="<?php echo $id ?>">
+        <form action="{{url('crearPlato')}}" method="GET">
+            <input type="hidden" name="id_seccion" value="<?php echo $id ?>">
             <button class= "btn" type="submit" name="Crear" value="Crear">Crear</button>
         </form>
         <form action="{{url('cPanelAdmin')}}" method="GET">
@@ -35,27 +35,27 @@
             <tr class="active">
                 <th>ID</th>
                 <th>NOMBRE</th>
+                <th>DESCRIPCIÓN</th>
+                <th>PRECIO</th>
                 <th>FOTO</th>
-                <th colspan="3">ACCIONES</th>
+                <th colspan="2">ACCIONES</th>
             </tr>
-            @foreach($listaSecciones as $seccion)
+            @foreach($listaPlatos as $Plato)
                 <tr>
-                    <td>{{$seccion->id}}</td>
-                    <td>{{$seccion->nombre_seccion}}</td>
-                    <td style="padding: auto; text-align: center"><img src="{{asset('storage').'/'.$seccion->img_seccion}}" width="100"></td>
-                    <td><form  action="{{url('eliminarSeccion/'.$seccion->id)}}" method="POST">
+                    <td>{{$Plato->id}}</td>
+                    <td>{{$Plato->nombre_plato}}</td>
+                    <td>{{$Plato->desc_plato}}</td>
+                    <td>{{$Plato->precio_plato}}</td>
+                    <td style="padding: auto; text-align: center"><img src="{{asset('storage').'/'.$Plato->img_plato}}" width="100"></td>
+                    <td><form  action="{{url('eliminarPlato/'.$Plato->id)}}" method="POST">
                         @csrf
                         <!--{{csrf_field()}}--->
                         {{method_field('DELETE')}}
                         <!--@method('DELETE')--->
                         <button class= "botonTabla" type="submit" name="Eliminar" value="Eliminar" id="btnEli">Eliminar</button>
                     </form></td>
-                    <td><form action="{{url('modificarSeccion/'.$seccion->id)}}" method="GET">
+                    <td><form action="{{url('modificarPlato/'.$Plato->id)}}" method="GET">
                         <button class= "botonTabla" type="submit" name="Modificar" value="Modificar">Modificar</button>
-                    </form></td>
-                    <td><form  action="{{url('mostrarPlatos/'.$seccion->id)}}" method="GET">
-                        <input type="hidden" name="id_seccion" value="{{$seccion->id}}">
-                        <button class= "botonTabla" type="submit" value="Platos" id="btnPla">Platos</button>
                     </form></td>
                 </tr>
             @endforeach
