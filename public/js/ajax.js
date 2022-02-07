@@ -68,7 +68,8 @@ function leerJS() {
             /* Leerá la respuesta que es devuelta por el controlador: */
             for (let i = 0; i < respuesta.length; i++) {
                 recarga += '<tr>';
-                recarga += '<td>' + respuesta[i].nombre_resta + '</td>'
+                recarga += '<td>' + respuesta[i].nombre_resta + '</td><br>';
+                recarga += '<td><img src="uploads/' + respuesta[i].img_resta + '" style="width:15px;"></td>';
                 recarga += '</tr>';
             }
             tabla.innerHTML = recarga;
