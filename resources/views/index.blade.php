@@ -8,34 +8,30 @@
     <link rel="stylesheet" href="../public/css/style.css">
     <link rel="shortcut icon" href="../public/uploads/logo.png" type="image/x-icon">
     <script src="js/iconos_g.js"></script>
-    <script src="js/code.js"></script>
     <link rel="shortcut icon" href="../uploads/logo.png" type="image/x-icon">
     <script src="js/ajax.js"></script>
     <meta name="csrf-token" id="token" content="{{ csrf_token() }}">
+    <script src="js/code.js"></script>
 </head>
 <body>
     <header>
-      <img src="https://res.cloudinary.com/glovoapp/image/fetch//q_auto/https://glovoapp.com/images/logo_green.svg" width="130" height="44">
-      <form action="" onsubmit="">
-          <input class="inp_txt" type="text" placeholder="🔎 Buscar">
-      </form>
-        <button class="empezar" id="myBtn"><b>Empezar</b></button>     
-        <input type="text" id="leerajaxhtml" placeholder="Buscar" onkeyup="leerJS()">
-        <button class="empezar"><b>Empezar</b></button>
+      <img src="https://res.cloudinary.com/glovoapp/image/fetch//q_auto/https://glovoapp.com/images/logo_green.svg" width="130" height="44">    
+      <input class="inp_txt" type="text" id="leerajaxhtml" placeholder="🔎 Buscar" onkeyup="leerJS()">
+      <button class="empezar" id="myBtn"><b>Empezar</b></button> 
     </header>
     <div class="yellow">
       <div class="tipo_rest">
         @foreach ($tipo as $item)
-            <div>
-              <form action="{{url('tipo_rest')}}" method="GET">
-                <button class="tipos"><img class="img_bt" src="../public/uploads/{{$item->img_tipo}}"><br>{{$item->nombre_tipo}}</button>
-              </form>
-            </div>
+          <div>
+            <form action="{{url('tipo_rest')}}" method="GET">
+              <button class="tipos"><img class="img_bt" src="../public/uploads/{{$item->img_tipo}}"><br>{{$item->nombre_tipo}}</button>
+            </form>
+          </div>
         @endforeach
+      </div>
+      <br><br>
     </div>
-    <br><br>
-    </div>
-    <div class="rest">
+    <div id="idrestaurante" class="rest">
       <img src="https://res.cloudinary.com/glovoapp/image/fetch//q_auto/https://glovoapp.com/images/svg/curve--small.svg" class="landing-highlights-container__curve" >
       <br><br><br><br>  
       <span class="ttl_rest">
@@ -50,13 +46,9 @@
                 <div class="bar_res">
                   <span><b>{{$item->nombre_resta}}</b></span>
                 </div>
-    <div id="idrestaurante" class="rest">
-      @foreach ($restaurantes as $item)
-            <div>
-                <h3>{{$item->nombre_resta}}</h3>
             </div>
           @endforeach
-        </div>
+      </div>
     </div>
     <div class="img_color">
       <img src="https://res.cloudinary.com/glovoapp/image/fetch//q_auto/https://glovoapp.com/images/svg/curve--small.svg" class="landing-highlights-container__curve" >
