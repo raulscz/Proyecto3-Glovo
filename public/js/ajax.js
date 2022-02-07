@@ -65,13 +65,25 @@ function leerJS() {
         if (ajax.readyState == 4 && ajax.status == 200) {
             var respuesta = JSON.parse(this.responseText);
             var recarga = '';
-            recarga += '<tr><td>ID</td><td>NOMBRE</td></tr>';
             /* Leerá la respuesta que es devuelta por el controlador: */
+            recarga += '<div id="idrestaurante" class="rest">';
+            recarga += '<img src="https://res.cloudinary.com/glovoapp/image/fetch//q_auto/https://glovoapp.com/images/svg/curve--small.svg" class="landing-highlights-container__curve">';
+            recarga += '<br><br><br><br>';
+            recarga += '<span class="ttl_rest">Restaurantes</span>';
+            recarga += '<div class="res">';
             for (let i = 0; i < respuesta.length; i++) {
-                recarga += '<tr>';
-                recarga += '<td>' + respuesta[i].nombre_resta + '</td>'
-                recarga += '</tr>';
+                recarga += '<div class="cont_res">';
+                recarga += '<div class="tam_res">';
+                recarga += '<img src="uploads/' + respuesta[i].img_resta + '" style="width:100%;">';
+                recarga += '</div>';
+                recarga += '<div class="bar_res">'
+                recarga += '<span><b>' + respuesta[i].nombre_resta + '</b></span>';
+                recarga += '</div>'
+                recarga += '</div>';
             }
+            recarga += '</div>'
+            recarga += '</div>'
+
             tabla.innerHTML = recarga;
         }
     }
