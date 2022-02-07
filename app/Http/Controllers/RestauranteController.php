@@ -106,4 +106,8 @@ class RestauranteController extends Controller
     {
         //
     }
+
+    public function tipo_rest(){
+        
+    }
 }

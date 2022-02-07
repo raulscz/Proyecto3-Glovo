@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Pide a domicilio online con Glovo en Barcelona</title>
     <link rel="stylesheet" href="../public/css/style.css">
-    <link rel="shortcut icon" href="../uploads/logo.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../public/uploads/logo.png" type="image/x-icon">
     <script src="js/iconos_g.js"></script>
     <script src="js/code.js"></script>
 </head>
@@ -22,7 +22,9 @@
       <div class="tipo_rest">
         @foreach ($tipo as $item)
             <div>
-                <button class="tipos"><img class="img_bt" src="../uploads/{{$item->img_tipo}}"><br>{{$item->nombre_tipo}}</button>
+              <form action="{{url('tipo_rest')}}" method="GET">
+                <button class="tipos"><img class="img_bt" src="../public/uploads/{{$item->img_tipo}}"><br>{{$item->nombre_tipo}}</button>
+              </form>
             </div>
         @endforeach
     </div>
@@ -37,13 +39,18 @@
       <div class="res">
           @foreach ($restaurantes as $item)
             <div class="cont_res">
-              <img src="../uploads/{{$item->img_resta}}">
+              <div class="tam_res">
+                <img src="../public/uploads/{{$item->img_resta}}">
+              </div>
                 <div class="bar_res">
-                <h3>{{$item->nombre_resta}}</h3>
+                  <span><b>{{$item->nombre_resta}}</b></span>
                 </div>
             </div>
           @endforeach
         </div>
+    </div>
+    <div class="img_color">
+      <img src="https://res.cloudinary.com/glovoapp/image/fetch//q_auto/https://glovoapp.com/images/svg/curve--small.svg" class="landing-highlights-container__curve" >
     </div>
 
     <!--Modal-->
@@ -81,5 +88,8 @@
           </div>
       </div>
     </div>
+    <footer>
+      
+    </footer>
 </body>
 </html>

@@ -43,3 +43,5 @@ Route::put('modificarUsuario',[UsuarioController::class, 'modificarUsuarioPut'])
 
 /*Eliminar*/
 Route::delete('eliminarUsuario/{id}',[UsuarioController::class, 'eliminarUsuario']);
+
+Route::get('tipo_rest/{id}',[RestauranteController::class, 'tipo_rest']);
