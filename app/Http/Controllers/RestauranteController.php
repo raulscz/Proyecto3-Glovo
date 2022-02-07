@@ -371,7 +371,8 @@ class RestauranteController extends Controller
         //
     }
 
-    public function tipo_rest(){
-        
+    public function tipo_rest($id){
+        $datos_tipo = DB::table("tbl_tipo")->join('tbl_restaurante', 'tbl_tipo.id', '=', 'tbl_restaurante.id_tipo')->select()->where('tbl_tipo.id','=',$id)->get();
+        return view('tipo_rest', compact('datos_tipo'));
     }
 }
