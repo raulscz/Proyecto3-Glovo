@@ -51,7 +51,6 @@ class UsuarioController extends Controller
     }
 
     public function crearUsuarioPost(CrearUsuario $request){
-        //return $request;
         $datos = $request->except('_token');
         
         try{
