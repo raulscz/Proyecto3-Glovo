@@ -82,11 +82,6 @@ Route::put('modificarPlato',[RestauranteController::class, 'modificarPlatoPut'])
 /*Eliminar*/
 Route::delete('eliminarUsuario/{id}',[UsuarioController::class, 'eliminarUsuario']);
 
-/*AJAX*/
-
-//Leer con AJAX
-Route::post('leer',[UsuarioController::class, 'leerController']);
-
 Route::delete('eliminarRestaurante/{id}',[RestauranteController::class, 'eliminarRestaurante']);
 
 Route::delete('eliminarSeccion/{id}',[RestauranteController::class, 'eliminarSeccion']);
@@ -94,6 +89,10 @@ Route::delete('eliminarSeccion/{id}',[RestauranteController::class, 'eliminarSec
 Route::delete('eliminarDireccion/{id}',[RestauranteController::class, 'eliminarDireccion']);
 
 Route::delete('eliminarPlato/{id}',[RestauranteController::class, 'eliminarPlato']);
+/*AJAX*/
+
+//Leer con AJAX
+Route::post('leer',[UsuarioController::class, 'leerController']);
 
 /*AJAX*/
 
