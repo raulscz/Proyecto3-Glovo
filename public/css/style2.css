@@ -349,3 +349,9 @@ footer {
     bottom: 0px;
     display: block;
 }
+
+.btn_frm {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}

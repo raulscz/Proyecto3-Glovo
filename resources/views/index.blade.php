@@ -15,7 +15,9 @@
 </head>
 <body>
     <header>
-      <img src="https://res.cloudinary.com/glovoapp/image/fetch//q_auto/https://glovoapp.com/images/logo_green.svg" width="130" height="44">    
+      <form action="{{url('/index')}}" method="get">
+        <button class="btn_frm"><img src="https://res.cloudinary.com/glovoapp/image/fetch//q_auto/https://glovoapp.com/images/logo_green.svg" width="130" height="44"></button>
+    </form>        
       <input class="inp_txt" type="text" id="leerajaxhtml" placeholder="🔎 Buscar" onkeyup="leerJS()">
       <button class="empezar" id="myBtn"><b>Empezar</b></button> 
     </header>
@@ -23,9 +25,7 @@
       <div class="tipo_rest">
         @foreach ($tipo as $item)
           <div>
-            <form action="{{url('tipo_rest/'.$item->id)}}" method="GET">
-              <button class="tipos"><img class="img_bt" src="../public/uploads/{{$item->img_tipo}}"><br>{{$item->nombre_tipo}}</button>
-            </form>
+              <button class="tipos transform" id="btn_tipo{{$item->id}}" onclick="settypeJS({{$item->id}})"><img class="img_bt" src="../public/uploads/{{$item->img_tipo}}"><br>{{$item->nombre_tipo}}</button>
           </div>
         @endforeach
       </div>

@@ -129,8 +129,9 @@ header {
 }
 
 .img_color {
-    background-color: white;
+    color: white;
     width: 100%;
+    height: auto;
 }
 
 .landing-highlights-container__curve {
@@ -348,4 +349,10 @@ footer {
     left: 0px;
     bottom: 0px;
     display: block;
+}
+
+.btn_frm {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
 }

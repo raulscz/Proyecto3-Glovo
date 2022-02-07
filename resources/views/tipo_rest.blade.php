@@ -15,7 +15,9 @@
 </head>
 <body>
     <header>
-      <img src="https://res.cloudinary.com/glovoapp/image/fetch//q_auto/https://glovoapp.com/images/logo_green.svg" width="130" height="44">    
+        <form action="{{url('/index')}}" method="get">
+            <button class="btn_frm"><img src="https://res.cloudinary.com/glovoapp/image/fetch//q_auto/https://glovoapp.com/images/logo_green.svg" width="130" height="44"></button>
+        </form>    
       <input class="inp_txt" type="text" id="leerajaxhtml" placeholder="🔎 Buscar" onkeyup="leerJS()">
       <button class="empezar" id="myBtn"><b>Empezar</b></button> 
     </header>

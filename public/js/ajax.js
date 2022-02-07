@@ -56,6 +56,9 @@ function leerJS() {
     var formData = new FormData();
     formData.append('_token', document.getElementById('token').getAttribute("content"));
     formData.append('filtrocontrolador', document.getElementById('leerajaxhtml').value);
+    if (typeof id != 'undefined') {
+        formData.append('leer_tipo', id);
+    }
 
     /* Inicializar un objeto AJAX */
     var ajax = objetoAjax();
@@ -177,4 +180,26 @@ function editarJS(id_usu) {
     }
 
     ajax.send(formData);
+}
+
+function settypeJS(id_tipo) {
+    //Poner id como indefinido para k no filtre
+    //Add class and remove class si tiene o no clase es el condicional
+    if (id_tipo == document.getElementById('btn_tipo' + id_tipo)) {
+        var boton = document.getElementsByClassName('transform');
+        for (i = 0; i < boton.length; i++) {
+            boton[i].style = 'transform: scale(1)';
+        }
+        id = undefined;
+        leerJS();
+    } else {
+        var boton = document.getElementsByClassName('transform');
+        for (i = 0; i < boton.length; i++) {
+            boton[i].style = 'transform: scale(1)';
+        }
+        document.getElementById('btn_tipo' + id_tipo).style = 'transform: scale(1.12)';
+        id = id_tipo;
+        leerJS();
+    }
+
 }
