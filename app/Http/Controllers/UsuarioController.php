@@ -74,6 +74,25 @@ class UsuarioController extends Controller
         }
         return redirect('mostrarUsuarios');
     }
+    /*REGISTRAR*/
+    public function registrarUsuario(){
+        return view('registrarUser');
+    }
+
+    public function registrarUsuarioPost(crearUsuario $request){
+        //return $request;
+        $datos = $request->except('_token');
+        try{
+            DB::beginTransaction();
+            $idRols = DB::table('tbl_rol')->select('id')->where('nombre_rol','=',"Usuario")->first();
+            DB::table('tbl_user')->insertGetId(["nombre_user"=>$datos['nombre_user'],"apellido_user"=>$datos['apellido_user'],"dni_user"=>$datos['dni_user'],"edad_user"=>$datos['edad_user'],"correo_user"=>$datos['correo_user'],"pass_user"=>$datos['pass_user'],"id_rol"=>$idRols->id]);
+            DB::commit();
+        }catch(\Exception $e){
+            DB::rollBack();
+            return $e->getMessage();
+        }
+        return redirect('/index');
+    }
     /*Modificar*/
     public function modificarUsuario($id){
         $Usuario = DB::table('tbl_rol')->join('tbl_user','tbl_rol.id','=','tbl_user.id_rol')->select('*')->where("tbl_user.id","=",$id)->first();

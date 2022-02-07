@@ -46,6 +46,12 @@ Route::get('crearRestaurante',[RestauranteController::class, 'crearRestaurante']
 
 Route::post('crearRestaurante',[RestauranteController::class, 'crearRestaurantePost']);
 
+/*REGISTRAR*/
+Route::get('registrarUser',[UsuarioController::class, 'registrarUsuario']);
+
+Route::post('registrarUser',[UsuarioController::class, 'registrarUsuarioPost']);
+
+
 /*Actualizar*/
 Route::get('modificarUsuario/{id}',[UsuarioController::class, 'modificarUsuario']);
 
