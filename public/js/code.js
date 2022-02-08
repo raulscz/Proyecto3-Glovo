@@ -55,3 +55,31 @@ function mostrarreg() {
     document.getElementById("content_regis").style.display = 'block';
     document.getElementById("content_regis2").style.display = 'none';
 }
+
+function modal_sec(id) {
+    // Get the modal
+    var modalid = document.getElementById("myModal" + id);
+
+    // Get the button that opens the modal
+    var btnid = document.getElementById("myBtn" + id);
+
+    // Get the <span> element that closes the modal
+    var spanid = document.getElementsByClassName("close")[0];
+
+    // When the user clicks on the button, open the modal
+    btnid.onclick = function() {
+        modalid.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    spanid.onclick = function() {
+        modalid.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modalid) {
+            modalid.style.display = "none";
+        }
+    }
+}

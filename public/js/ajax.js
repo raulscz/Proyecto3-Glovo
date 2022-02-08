@@ -1,26 +1,6 @@
 window.onload = function() {
 
-    /*CODIGO MODAL*/
 
-    // Get the modal
-    modal = document.getElementById("myModal");
-
-    // Get the <span> element that closes the modal
-    span = document.getElementsByClassName("close")[0];
-
-
-
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function() {
-        modal.style.display = "none";
-    }
-
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
 }
 
 function abrirModal(id, nombre) {
@@ -185,21 +165,20 @@ function editarJS(id_usu) {
 function settypeJS(id_tipo) {
     //Poner id como indefinido para k no filtre
     //Add class and remove class si tiene o no clase es el condicional
-    if (id_tipo == document.getElementById('btn_tipo' + id_tipo)) {
+    if (typeof id != 'undefined' && id_tipo == id) {
         var boton = document.getElementsByClassName('transform');
         for (i = 0; i < boton.length; i++) {
-            boton[i].style = 'transform: scale(1)';
+            boton[i].classList.remove('classtype');
         }
         id = undefined;
         leerJS();
     } else {
         var boton = document.getElementsByClassName('transform');
         for (i = 0; i < boton.length; i++) {
-            boton[i].style = 'transform: scale(1)';
+            boton[i].classList.remove('classtype');
         }
-        document.getElementById('btn_tipo' + id_tipo).style = 'transform: scale(1.12)';
+        document.getElementById('btn_tipo' + id_tipo).classList.add('classtype');
         id = id_tipo;
         leerJS();
     }
-
 }

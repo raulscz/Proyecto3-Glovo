@@ -5,55 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Pide a domicilio online con Glovo en Barcelona</title>
-    <link rel="stylesheet" href="../public/css/style.css">
-    <link rel="shortcut icon" href="../public/uploads/logo.png" type="image/x-icon">
-    <script src="js/iconos_g.js"></script>
-    <link rel="shortcut icon" href="../uploads/logo.png" type="image/x-icon">
-    <script src="js/ajax.js"></script>
+    <link rel="stylesheet" href="../../public/css/style.css">
+    <link rel="shortcut icon" href="../../public/uploads/logo.png" type="image/x-icon">
+    <script src="../js/iconos_g.js"></script>
+    <link rel="shortcut icon" href="../../uploads/logo.png" type="image/x-icon">
+    <script src="../js/ajax.js"></script>
     <meta name="csrf-token" id="token" content="{{ csrf_token() }}">
-    <script src="js/code.js"></script>
+    <script src="../js/code.js"></script>
 </head>
 <body>
     <header>
-      <form action="{{url('/index')}}" method="get">
-        <button class="btn_frm"><img src="https://res.cloudinary.com/glovoapp/image/fetch//q_auto/https://glovoapp.com/images/logo_green.svg" width="130" height="44"></button>
-    </form>        
+        <form action="{{url('/index')}}" method="get">
+            <button class="btn_frm"><img src="https://res.cloudinary.com/glovoapp/image/fetch//q_auto/https://glovoapp.com/images/logo_green.svg" width="130" height="44"></button>
+        </form>    
       <input class="inp_txt" type="text" id="leerajaxhtml" placeholder="🔎 Buscar" onkeyup="leerJS()">
       <button class="empezar" id="myBtn"><b>Empezar</b></button> 
     </header>
-    <div class="yellow">
-      <div class="tipo_rest">
-        @foreach ($tipo as $item)
-          <div>
-              <button class="tipos transform" id="btn_tipo{{$item->id}}" onclick="settypeJS({{$item->id}})"><img class="img_bt" src="../public/uploads/{{$item->img_tipo}}"><br>{{$item->nombre_tipo}}</button>
-          </div>
-        @endforeach
-      </div>
-      <br><br>
-    </div>
-    <div id="idrestaurante" class="rest">
-      <img src="https://res.cloudinary.com/glovoapp/image/fetch//q_auto/https://glovoapp.com/images/svg/curve--small.svg" class="landing-highlights-container__curve" >
-      <br><br><br><br>  
-      <span class="ttl_rest">
-        Restaurantes
-      </span>
-      <div class="res">
-          @foreach ($restaurantes as $item)
-            <div class="cont_res">
-              <div class="tam_res">
-                <form action="{{url('rest/'.$item->id)}}" method="get">
-                  <button class="btn_frm"><img src="../public/uploads/{{$item->img_resta}}"></button>
-                </form>
-              </div>
-                <div class="bar_res">
-                  <span><b>{{$item->nombre_resta}}</b></span>
+    <div class="rest">
+      <div class="restaurante">
+          @foreach ($datos as $item)
+                <div><h2>{{$item->nombre_resta}}</h2></div>
+                <div class="d_flex">
+                  <div class="mitad"><img class="img_resta" src="../../public/uploads/{{$item->img_resta}}"></div>
+                  <div class="mitad">
+                    @foreach ($sec as $item2)
+                        <div class="mitad_mitad">
+                          <button class="btn_frm" id="myBtn{{$item2->id}}" onclick="modal_sec({{$item2->id}});"><h3>{{$item2->nombre_seccion}}</h3></button>
+                        </div>
+                        <div id="myModal{{$item2->id}}" class="modal">
+
+                          <div class="modal-content">
+                            <span class="close">&times;</span>
+                              <div class="register" id="content_regis">
+                                <h1>{{$item2->nombre_plato}}</h1>
+                              </div>
+                          </div>
+                        </div>
+                    @endforeach
+                  </div>
                 </div>
-            </div>
+                <p>{{$item->desc_resta}}</p>
           @endforeach
       </div>
-    </div>
-    <div class="img_color">
-      <img src="https://res.cloudinary.com/glovoapp/image/fetch//q_auto/https://glovoapp.com/images/svg/curve--small.svg" class="landing-highlights-container__curve" >
     </div>
 
     <!--Modal-->
@@ -91,6 +84,7 @@
           </div>
       </div>
     </div>
+
     <footer>
       
     </footer>

@@ -89,4 +89,4 @@ Route::delete('eliminarDireccion/{id}',[RestauranteController::class, 'eliminarD
 Route::post('/shows', [RestauranteController::class, 'filtroRestauranteAjax']);
 
 /*Tipos restaurantes*/
-Route::get('tipo_rest/{id}',[RestauranteController::class, 'tipo_rest']);
+Route::get('rest/{id}',[RestauranteController::class, 'rest']);
