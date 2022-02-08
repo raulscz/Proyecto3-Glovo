@@ -42,7 +42,7 @@
                 <tr>
                     <td>{{$seccion->id}}</td>
                     <td>{{$seccion->nombre_seccion}}</td>
-                    <td style="padding: auto; text-align: center"><img src="{{asset('storage').'/'.$seccion->img_seccion}}" width="100"></td>
+                    <td style="padding: auto; text-align: center"><img src="../../public/uploads/{{$seccion->img_seccion}}" width="100"></td>
                     <td><form  action="{{url('eliminarSeccion/'.$seccion->id)}}" method="POST">
                         @csrf
                         <!--{{csrf_field()}}--->

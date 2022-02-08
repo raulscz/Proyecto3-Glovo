@@ -11,7 +11,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <title>Mostrar Secciones</title>
+    <title>Mostrar Platos</title>
     <link rel="stylesheet" href="{!! asset('css/styles.css') !!}">
 </head>
 <body class="mostrar">
@@ -46,7 +46,7 @@
                     <td>{{$Plato->nombre_plato}}</td>
                     <td>{{$Plato->desc_plato}}</td>
                     <td>{{$Plato->precio_plato}}</td>
-                    <td style="padding: auto; text-align: center"><img src="{{asset('storage').'/'.$Plato->img_plato}}" width="100"></td>
+                    <td style="padding: auto; text-align: center"><img src="../../public/uploads/$Plato->img_plato}}" width="100"></td>
                     <td><form  action="{{url('eliminarPlato/'.$Plato->id)}}" method="POST">
                         @csrf
                         <!--{{csrf_field()}}--->
