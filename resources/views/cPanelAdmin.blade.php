@@ -11,29 +11,36 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Control Panel Administrador</title>
+    <link rel="stylesheet" href="{!! asset('css/styles.css') !!}">
+    <script src="js/iconos_g.js"></script>
 </head>
-<body>
+<body class="cPanel">
+    <br><br><br><br><br>
     <div class="row flex-cv">
-        <div>
-            <form action="{{url('logout')}}" method="GET">
-                <div class="form-group">
-                    <button type="submit" name="logout" value="logout">Logout</button>
-                </div>
-            </form>
-        </div>
-        <div class="btn-group" role="group">
-            <form action="{{url('mostrarUsuarios')}}" method="GET">
-                <div class="form-group">
-                    <p>Gestión de Usuarios</p>
-                    <button type="submit" value="Enviar">Usuarios</button>
-                </div>
-            </form>
-            <form action="{{url('mostrarRestaurantes')}}" method="GET">
-                <div class="form-group">
-                    <p>Gestión de Usuarios</p>
-                    <button type="submit" value="Enviar">Restaurantes</button>
-                </div>
-            </form>
+        <div class="cuadro">
+            <h1>Control Admin Panel</h1>
+            <div>
+                <form action="{{url('logout')}}" method="GET">
+                    <div class="form-group">
+                        <span><i class="fas fa-sign-out-alt"></i></span>
+                        <button type="submit" value="logout" class="botoncPanel">LOGOUT</button><br><br>
+                    </div>
+                </form>
+            </div>
+            <div class="btn-group" role="group">
+                <form action="{{url('mostrarUsuarios')}}" method="GET">
+                    <div class="form-group">
+                        <span><i class="fas fa-user"></i></span>
+                        <button type="submit" value="Enviar" class="botoncPanel">USUARIOS</button><br><br>
+                    </div>
+                </form>
+                <form action="{{url('mostrarRestaurantes')}}" method="GET">
+                    <div class="form-group">
+                        <span><i class="fas fa-utensils"></i></span>
+                        <button type="submit" value="Enviar" class="botoncPanel">RESTAURANTES</button><br><br>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </body>

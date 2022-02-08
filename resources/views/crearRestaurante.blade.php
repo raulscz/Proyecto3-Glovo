@@ -12,81 +12,91 @@
   <meta charset="UTF-8">
   <link rel="stylesheet" href="{!! asset('css/styles.css') !!}">
 </head>
-<body class="crear">
+<body class="form">
     <div class="row flex-cv">
-      <div class="cuadro_crear">
-        <form action="{{url('crearRestaurante')}}" method="post" enctype="multipart/form-data">
+      <div class="cuadroForm">
+        <h1>Crear Restaurante</h1>
+        <br>
+        <form action="{{url('crearRestaurante')}}" method="post" enctype="multipart/form-data" class="formulario" id="formulario">
           @csrf
-          <h1>CREAR RESTAURANTE</h1>
-          <br>
-          <div class="form-group">
-            <p>Nombre:</p>
-            <div>
-                <input class="inputcrear" type="text" name="nombre_resta" placeholder="Introduce el nombre..." value="{{old('nombre_resta')}}">
-                @error('nombre_resta')
-                    <br>
-                    {{$message}}
-                @enderror
-            </div>
-          </div>
-          <br>
-          <div class="form-group">
-            <p>Descripción:</p>
-            <div>
-                <input class="inputcrear" type="text" name="desc_resta" placeholder="Introduce la descripción..." value="{{old('desc_resta')}}">
-                @error('desc_resta')
-                    <br>
-                    {{$message}}
-                @enderror
-            </div>
-          </div>
-          <br>
-          <div class="form-group">
-            <p>Horario Apertura:</p>
-            <div>
-                <input class="inputcrear" type="time" name="horario_ini_resta" placeholder="Introduce el horario..." value="{{old('horario_ini_resta')}}">
-                @error('horario_ini_resta')
-                    <br>
-                    {{$message}}
-                @enderror
-            </div>
-          </div>
-          <div class="form-group">
-            <p>Horario Cierre:</p>
-            <div>
-                <input class="inputcrear" type="time" name="horario_fi_resta" placeholder="Introduce el horario..." value="{{old('horario_fi_resta')}}">
-                @error('horario_fi_resta')
-                    <br>
-                    {{$message}}
-                @enderror
-            </div>
-          </div>
-          <div class="form-group">
-            <p>Imagen:</p>
-            <div>
-                <input type="file" name="img_resta">
-            </div>
-          </div>
-          <div class="form-group">
-            <p>Tipo:</p>
-            <div>
-                <select name="id_tipo">
-                    @foreach($listaTipo as $tipo)
-                        <option value="{{$tipo->id}}">{{$tipo->nombre_tipo}}</option>
-                    @endforeach
-                </select>
-                @error('id_tipo')
-                    <br>
-                    {{$message}}
-                @enderror
-            </div>
-          </div>
-          <br><br>
-          <div class="form-group">
-            <input class= "botoncrear" type="submit" value="Crear">
-          </div>
-        </form>
-      </div>
+          <!-- Grupo: Nombre -->
+          <div class="formulario__grupo" id="">
+                    <label class="formulario__label">Nombre Usuario</label>
+                    <div class="formulario__grupo-input">
+                        <input type="text" class="formulario__input" name="nombre_resta" id="" placeholder="Pancracio" value="{{old('nombre_resta')}}">
+                        @error('nombre_resta')
+                          <br>
+                          {{$message}}
+                        @enderror
+                    </div>
+                </div>
+
+                <!-- Grupo: Descripción -->
+                <div class="formulario__grupo" id="">
+                    <label class="formulario__label">Descripción</label>
+                    <div class="formulario__grupo-input">
+                        <input type="text" class="formulario__input" id="" placeholder="Pérez" name="desc_resta" value="{{old('desc_resta')}}">
+                        @error('desc_resta')
+                          <br>
+                          {{$message}}
+                        @enderror
+                    </div>
+                </div>
+
+                <!-- Grupo: Horario -->
+                <div class="formulario__grupo" id="">
+                    <label class="formulario__label">Horario Apertura</label>
+                    <div class="formulario__grupo-input">
+                        <input type="time" class="formulario__input" id="" placeholder="12345678L" name="horario_ini_resta" value="{{old('horario_ini_resta')}}">
+                        @error('horario_ini_resta')
+                          <br>
+                          {{$message}}
+                        @enderror
+                    </div>
+                </div>
+
+                <!-- Grupo: Horario 2 -->
+                <div class="formulario__grupo" id="">
+                    <label class="formulario__label">Horario Cierre</label>
+                    <div class="formulario__grupo-input">
+                        <input type="time" class="formulario__input" id="" placeholder="edad" name="horario_fi_resta" value="{{old('horario_fi_resta')}}">
+                        @error('horario_fi_resta')
+                          <br>
+                          {{$message}}
+                        @enderror
+                    </div>
+                </div>
+
+                <!-- Grupo: Imagen -->
+                <div class="formulario__grupo">
+                    <label class="formulario__label">Imagen</label>
+                    <div class="formulario__grupo-input">
+                        <input type="file" class="formulario__input" name="img_resta">
+                    </div>
+                </div>
+
+                <!-- Grupo: Tipo -->
+                <div class="formulario__grupo">
+                    <label class="formulario__label">Tipo</label>
+                    <div class="formulario__grupo-input">
+                        <select name="id_tipo">
+                          @foreach($listaTipo as $tipo)
+                            <option value="{{$tipo->id}}">{{$tipo->nombre_tipo}}</option>
+                          @endforeach
+                        </select>
+                        @error('id_tipo')
+                            <br>
+                            {{$message}}
+                        @enderror
+                    </div>
+                </div>
+                <div class="formulario__grupo formulario__grupo-btn-enviar">
+                    <button type="submit" value="Enviar" class="formulario__btn">Enviar</button>
+                </div>
+            </form>
+        </div>
     </div>
+	<script src="js/formulario.js"></script>
+	<script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
 </body>
 </html>

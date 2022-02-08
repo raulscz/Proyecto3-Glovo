@@ -42,7 +42,7 @@
                 <tr>
                     <td>{{$seccion->id}}</td>
                     <td>{{$seccion->nombre_seccion}}</td>
-                    <td style="padding: auto; text-align: center"><img src="{{asset('storage').'/'.$seccion->img_seccion}}" width="100"></td>
+                    <td style="padding: auto; text-align: center"><img src="../../public/uploads/{{$seccion->img_seccion}}" width="100"></td>
                     <td><form  action="{{url('eliminarSeccion/'.$seccion->id)}}" method="POST">
                         @csrf
                         <!--{{csrf_field()}}--->
@@ -53,7 +53,8 @@
                     <td><form action="{{url('modificarSeccion/'.$seccion->id)}}" method="GET">
                         <button class= "botonTabla" type="submit" name="Modificar" value="Modificar">Modificar</button>
                     </form></td>
-                    <td><form  action="{{url('mostrarPlatos'.$seccion->id)}}" method="GET">
+                    <td><form  action="{{url('mostrarPlatos/'.$seccion->id)}}" method="GET">
+                        <input type="hidden" name="id_seccion" value="{{$seccion->id}}">
                         <button class= "botonTabla" type="submit" value="Platos" id="btnPla">Platos</button>
                     </form></td>
                 </tr>

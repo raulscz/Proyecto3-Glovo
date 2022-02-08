@@ -44,7 +44,7 @@
                     <td>{{$restaurante->desc_resta}}</td>
                     <td>{{$restaurante->horario_ini_resta}}-{{$restaurante->horario_fi_resta}}</td>
                     <td>{{$restaurante->nombre_tipo}}</td>
-                    <td style="padding: auto; text-align: center"><img src="{{asset('storage').'/'.$restaurante->img_resta}}" width="100"></td>
+                    <td style="padding: auto; text-align: center"><img src="../public/uploads/{{$restaurante->img_resta}}" width="100"></td>
                     <td><form  action="{{url('eliminarRestaurante/'.$restaurante->id)}}" method="POST">
                         @csrf
                         <!--{{csrf_field()}}--->

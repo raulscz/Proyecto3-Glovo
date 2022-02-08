@@ -11,19 +11,34 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulario Actualizar Seccion</title>
+    <link rel="stylesheet" href="{!! asset('css/styles.css') !!}">
 </head>
-<body>
-<form action="{{url('modificarSeccion')}}" method="post" enctype="multipart/form-data">
-        @csrf
-        {{method_field('PUT')}}
-        <p>Nombre Sección</p>
-        <input type="text" name="nombre_seccion" value="{{$Seccion->nombre_seccion}}">
-        <p>Foto Sección</p>
-        <input type="file" name="img_seccion" value="{{$Seccion->img_seccion}}">
-        <div>
-            <input type="hidden" name="id" value="{{$Seccion->id}}">
-            <input type="submit" value="Enviar">
+<body class="cPanel">
+    <div class="row flex-cv">
+        <div class="cuadro">
+            <form action="{{url('modificarSeccion')}}" method="post" enctype="multipart/form-data">
+                @csrf
+                {{method_field('PUT')}}
+                <h1>MODIFICAR SECCION</h1>
+                <br>
+                    <div class="form-group">
+                        <p>Nombre SECCION:</p>
+                        <div>
+                        <input type="text"  class="botoncPanel" name="nombre_seccion" value="{{$Seccion->nombre_seccion}}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <p>Imagen:</p>
+                        <div>
+                            <input type="file" name="img_seccion" value="{{$Seccion->img_seccion}}">
+                        </div>
+                    </div>
+                <div>
+                    <input type="hidden" name="id" value="{{$Seccion->id}}">
+                    <input  class="botoncPanel" type="submit" value="Enviar">
+                </div>
+            </form>
         </div>
-    </form>
+    </div>
 </body>
 </html>

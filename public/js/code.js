@@ -47,8 +47,7 @@ window.onload = function() {
 // }
 
 function mostrarlog() {
-    document.getElementById("content_regis").style.display = 'none';
-    document.getElementById("content_regis2").style.display = 'block';
+    window.location.href = "registrarUser";
 }
 
 function mostrarreg() {

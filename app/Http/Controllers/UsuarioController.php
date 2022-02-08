@@ -12,13 +12,14 @@ use App\Mail\EnviarMensaje;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\CrearUsuario;
 use Symfony\Component\Console\Input\Input;
+use App\Http\Requests\RegistrarUsuario;
 
 class UsuarioController extends Controller
 {
     /*Login & Logout*/
-    public function login(){
-        return view('login');
-    }
+    // public function login(){
+    //     return view('login');
+    // }
 
     public function loginP(Request $request){
         $datos= $request->except('_token','_method');
@@ -29,12 +30,12 @@ class UsuarioController extends Controller
         }else{
             return view('index');
         }
-        return view('');
+        return view('index');
     }
     public function logout(Request $request){
         $request->session()->forget('nombre_admin');
         $request->session()->flush();
-        return redirect('/');
+        return redirect('index');
     }
 
     /*Mostrar*/
@@ -52,7 +53,6 @@ class UsuarioController extends Controller
     }
 
     public function crearUsuarioPost(CrearUsuario $request){
-        //return $request;
         $datos = $request->except('_token');
         
         try{
@@ -65,6 +65,25 @@ class UsuarioController extends Controller
             return $e->getMessage();
         }
         return redirect('mostrarUsuarios');
+    }
+    /*REGISTRAR*/
+    public function registrarUsuario(){
+        return view('registrarUser');
+    }
+
+    public function registrarUsuarioPost(RegistrarUsuario $request){
+        //return $request;
+        $datos = $request->except('_token');
+        try{
+            DB::beginTransaction();
+            $idRols = DB::table('tbl_rol')->select('id')->where('nombre_rol','=',"Usuario")->first();
+            DB::table('tbl_user')->insertGetId(["nombre_user"=>$datos['nombre_user'],"apellido_user"=>$datos['apellido_user'],"dni_user"=>$datos['dni_user'],"edad_user"=>$datos['edad_user'],"correo_user"=>$datos['correo_user'],"pass_user"=>$datos['pass_user'],"id_rol"=>$idRols->id]);
+            DB::commit();
+        }catch(\Exception $e){
+            DB::rollBack();
+            return $e->getMessage();
+        }
+        return redirect('/index');
     }
     /*Modificar*/
     public function modificarUsuario($id){

@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\CrearRestaurante;
 use App\Http\Requests\CrearSecciones;
 use App\Http\Requests\CrearDireccion;
+use App\Http\Requests\CrearPlatos;
 
 
 class RestauranteController extends Controller
@@ -34,8 +35,10 @@ class RestauranteController extends Controller
     }
 
     public function mostrarPlatos($id){
-
+        $listaPlatos = DB::table('tbl_seccion')->join('tbl_plato','tbl_seccion.id','=','tbl_plato.id_seccion')->select('*')->where('tbl_plato.id_seccion','=',$id)->get();
+        return view('mostrarPlatos', compact('listaPlatos'));
     }
+
     /*Crear*/
     public function crearRestaurante(){
         $listaTipo = DB::table("tbl_tipo")->select('*')->get();
@@ -104,6 +107,31 @@ class RestauranteController extends Controller
         }
         return redirect('mostrarRestaurantes');
     }
+
+    public function crearPlato(){
+        return view('crearPlato');
+    }
+
+    public function crearPlatoPost(CrearPlatos $request){
+        $datos = $request->except('_token');
+
+        if($request->hasFile('img_plato')){
+            $datos['img_plato'] = $request->file('img_plato')->store('uploads','public');
+        }else{
+            $datos['img_plato'] = NULL;
+        }
+
+        try {
+            DB::beginTransaction();
+            DB::table('tbl_plato')->InsertGetId(["img_plato"=>$datos['img_plato'],"nombre_plato"=>$datos['nombre_plato'],"desc_plato"=>$datos['desc_plato'],"precio_plato"=>$datos['precio_plato'],"id_seccion"=>$datos['id_seccion']]);
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return $e->getMessage();
+        }
+        return redirect('mostrarRestaurantes');
+    }
+
     /*Modificar*/
     public function modificarRestaurante($id){
         $restaurante = DB::table("tbl_tipo")->join('tbl_restaurante', 'tbl_tipo.id', '=', 'tbl_restaurante.id_tipo')->select()->where('tbl_restaurante.id','=',$id)->first();
@@ -184,6 +212,37 @@ class RestauranteController extends Controller
         }
         return redirect('mostrarRestaurantes');
     }
+
+    public function modificarPlato($id){
+        $Plato = DB::table('tbl_seccion')->join('tbl_plato','tbl_seccion.id','=','tbl_plato.id_seccion')->select('*')->where('tbl_plato.id','=',$id)->first();
+        return view('modificarPlato',compact('Plato'));
+    }
+
+    public function modificarPlatoPut(Request $request){
+        $datos=$request->except('_token','_method');
+
+        if ($request->hasFile('img_plato')) {
+            $foto = DB::table('tbl_plato')->select('img_plato')->where('id','=',$request['id'])->first();
+            if ($foto->img_plato != null) {
+                Storage::delete('public/'.$foto->img_plato);
+            }
+            $datos['img_plato'] = $request->file('img_plato')->store('uploads','public');
+        }else{
+            $foto = DB::table('tbl_plato')->select('img_plato')->where('id','=',$request['id'])->first();
+            $datos['img_plato'] = $foto->img_plato;
+        }
+
+        try {
+            DB::beginTransaction();
+            DB::table('tbl_plato')->where('id','=',$datos['id'])->update($datos);
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return $e->getMessage();
+        }
+        return redirect('mostrarRestaurantes');
+    }
+
     /*Eliminar*/
     public function eliminarRestaurante($id){
         try{
@@ -213,6 +272,18 @@ class RestauranteController extends Controller
         try{
             DB::beginTransaction();
             DB::table('tbl_dirección')->where('id','=',$id)->delete();
+            DB::commit();
+        }catch(\Exception $e){
+            DB::rollBack();
+            return $e->getMessage();
+        }
+        return redirect('mostrarRestaurantes');
+    }
+
+    public function eliminarPlato($id){
+        try{
+            DB::beginTransaction();
+            DB::table('tbl_plato')->where('id','=',$id)->delete();
             DB::commit();
         }catch(\Exception $e){
             DB::rollBack();
