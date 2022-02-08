@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Mail\EnviarMensaje;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\CrearUsuario;
+use App\Http\Requests\RegistrarUsuario;
 
 class UsuarioController extends Controller
 {
@@ -69,7 +70,7 @@ class UsuarioController extends Controller
         return view('registrarUser');
     }
 
-    public function registrarUsuarioPost(crearUsuario $request){
+    public function registrarUsuarioPost(RegistrarUsuario $request){
         //return $request;
         $datos = $request->except('_token');
         try{
