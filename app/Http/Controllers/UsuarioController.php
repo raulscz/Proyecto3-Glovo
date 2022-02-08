@@ -16,9 +16,9 @@ use App\Http\Requests\RegistrarUsuario;
 class UsuarioController extends Controller
 {
     /*Login & Logout*/
-    public function login(){
-        return view('login');
-    }
+    // public function login(){
+    //     return view('login');
+    // }
 
     public function loginP(Request $request){
         $datos= $request->except('_token','_method');
@@ -29,12 +29,12 @@ class UsuarioController extends Controller
         }else{
             return view('index');
         }
-        return view('');
+        return view('index');
     }
     public function logout(Request $request){
         $request->session()->forget('nombre_admin');
         $request->session()->flush();
-        return redirect('/');
+        return redirect('index');
     }
 
     /*Mostrar*/

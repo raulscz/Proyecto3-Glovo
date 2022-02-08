@@ -60,7 +60,7 @@
       <div class="modal-content">
         <span class="close">&times;</span>
           <div class="register" id="content_regis">
-            <form action="{{url('')}}" method="POST">
+            <form action="{{url('login')}}" method="POST">
               @csrf
                 <h1>Iniciar sesion en Glovo</h1><br>
                 <span><i class="fas fa-envelope"></i></span>

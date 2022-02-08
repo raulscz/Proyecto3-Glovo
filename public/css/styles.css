@@ -12,7 +12,6 @@ body {
     text-align: center;
     display: flex;
     flex-flow: column;
-    background-color: #ffc244;
 }
 
 
@@ -32,6 +31,13 @@ body {
 
 
 /*Estilos Para Mostrar Tabla*/
+
+.mostrar {
+    background-image: url("../../public/img/glovo.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
 
 .table th {
     padding-top: 12px;
@@ -58,11 +64,11 @@ body {
     border-right: 2pt solid rgba(17, 17, 17);
     border-top: 2pt solid rgba(17, 17, 17);
     border-bottom: 2pt solid rgba(17, 17, 17);
-    background-color: #FFC224;
+    background-color: #fad078;
 }
 
 table tr:hover {
-    background-color: #F9BC3F;
+    background-color: rgba(192, 197, 206);
 }
 
 .botonTabla {
@@ -95,7 +101,7 @@ table tr:hover {
 }
 
 #btnSec {
-    background-color: #f1c27d;
+    background-color: #addbed;
 }
 
 #btnPla {
@@ -106,17 +112,17 @@ table tr:hover {
 /*Estilos Botones*/
 
 .btn {
-    padding: 10px 30px;
+    padding: 5px 10px;
     margin: 0px 10px 10px 0px;
     float: right;
-    border-radius: 50px;
+    border-radius: 10px;
     font-size: 15px;
     text-align: center;
-    color: white;
-    font-weight: 700;
+    color: black;
     text-decoration: none;
-    background-color: black;
+    background-color: #00edc0;
     border-color: black;
+    border-bottom: 5px solid black;
     float: left;
     display: flex;
 }
@@ -134,24 +140,11 @@ table tr:hover {
 }
 
 #logout {
-    background-color: black;
-    color: white;
-}
-
-#logout:hover {
-    background-color: white;
-    /* Green */
-    color: black;
+    background-color: #00edc0;
 }
 
 #vista {
-    background-color: skyblue;
-}
-
-#vista:hover {
-    background-color: white;
-    /* Green */
-    color: black;
+    background-color: #00edc0;
 }
 
 
@@ -160,4 +153,164 @@ table tr:hover {
 .centerdiv {
     width: 23%;
     margin: 0 auto;
+}
+
+
+/*Control Panel Admin*/
+
+.cPanel {
+    overflow-x: hidden;
+    overflow-y: hidden;
+    background-color: #fad078;
+}
+
+.cuadro {
+    height: 300px;
+    width: 450px;
+    border: 5px solid;
+    background: #fff;
+    border-color: #00A082;
+}
+
+.cuadro p {
+    font-weight: bold;
+    margin: 0;
+}
+
+.botoncPanel {
+    width: 300px;
+    height: 45px;
+    border-radius: 7px;
+    border-color: #011f4b;
+    background-color: #00A082;
+    color: #fff;
+}
+
+
+/*Estilos Formulario Crear*/
+
+.form {
+    background-color: #fad078;
+}
+
+.cuadroForm {
+    height: 550px;
+    width: 750px;
+    border: 5px solid;
+    background: #fff;
+    border-color: #00A082;
+}
+
+.formulario {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.formulario__label {
+    display: block;
+    font-weight: 700;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.formulario__grupo-input {
+    position: relative;
+}
+
+.formulario__input {
+    width: 100%;
+    background: rgba(163, 163, 163, 0.4);
+    border: 3px solid transparent;
+    border-radius: 3px;
+    height: 45px;
+    line-height: 45px;
+    padding: 0 40px 0 10px;
+    transition: .3s ease all;
+}
+
+.formulario__input:focus {
+    border: 3px solid #0075FF;
+    outline: none;
+    box-shadow: 3px 0px 30px rgba(163, 163, 163, 0.4);
+}
+
+.formulario__input-error {
+    font-size: 12px;
+    margin-bottom: 0;
+    display: none;
+}
+
+.formulario__input-error-activo {
+    display: block;
+}
+
+.formulario__validacion-estado {
+    position: absolute;
+    right: 10px;
+    bottom: 15px;
+    z-index: 100;
+    font-size: 16px;
+    opacity: 0;
+}
+
+.formulario__checkbox {
+    margin-right: 10px;
+}
+
+.formulario__grupo-terminos,
+.formulario__mensaje,
+.formulario__grupo-btn-enviar {
+    grid-column: span 2;
+}
+
+.formulario__mensaje {
+    height: 45px;
+    line-height: 45px;
+    background: #F66060;
+    padding: 0 15px;
+    border-radius: 3px;
+    display: none;
+}
+
+.formulario__mensaje-activo {
+    display: block;
+}
+
+.formulario__mensaje p {
+    margin: 0;
+}
+
+.formulario__grupo-btn-enviar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.formulario__btn {
+    height: 45px;
+    line-height: 45px;
+    width: 30%;
+    background: #00a082;
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    border-radius: 3px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: .1s ease all;
+}
+
+.formulario__btn:hover {
+    box-shadow: 3px 0px 30px rgba(163, 163, 163, 1);
+}
+
+.formulario__mensaje-exito {
+    font-size: 14px;
+    color: #119200;
+    display: none;
+}
+
+.formulario__mensaje-exito-activo {
+    display: block;
 }
