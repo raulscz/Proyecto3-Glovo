@@ -89,6 +89,7 @@ Route::delete('eliminarSeccion/{id}',[RestauranteController::class, 'eliminarSec
 Route::delete('eliminarDireccion/{id}',[RestauranteController::class, 'eliminarDireccion']);
 
 Route::delete('eliminarPlato/{id}',[RestauranteController::class, 'eliminarPlato']);
+
 /*AJAX*/
 
 //Leer con AJAX
