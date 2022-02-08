@@ -182,3 +182,27 @@ function settypeJS(id_tipo) {
         leerJS();
     }
 }
+
+function seccionJS(id, idrest) {
+    var tabla = document.getElementById("cont_sec");
+    var formData = new FormData();
+    formData.append('_token', document.getElementById('token').getAttribute("content"));
+    formData.append('id_sec', id);
+    formData.append('id_rest', idrest);
+
+    var ajax = objetoAjax();
+
+    ajax.open("POST", "mostrar_sec", true);
+    ajax.onreadystatechange = function() {
+        if (ajax.readyState == 4 && ajax.status == 200) {
+            var respuesta = JSON.parse(this.responseText);
+            var recarga = '';
+            /* Leerá la respuesta que es devuelta por el controlador: */
+            recarga += '<div id="idrestaurante" class="rest">';
+
+            tabla.innerHTML = recarga;
+        }
+    }
+
+    ajax.send(formData);
+}

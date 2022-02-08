@@ -24,6 +24,33 @@ window.onload = function() {
             modal.style.display = "none";
         }
     }
+
+    /* Modal2 */
+    /* // Get the modal
+    var modal2 = document.getElementById("myModal2");
+
+    // Get the button that opens the modal2
+    var btn2 = document.getElementById("myBtn2");
+
+    // Get the <span> element that closes the modal
+    var span2 = document.getElementsByClassName("close")[0];
+
+    // When the user clicks on the button, open the modal
+    btn2.onclick = function() {
+        modal2.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span2.onclick = function() {
+        modal2.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal2) {
+            modal2.style.display = "none";
+        }
+    } */
 }
 
 // function mostrarreg() {
@@ -56,8 +83,9 @@ function mostrarreg() {
 }
 
 function modal_sec(id) {
+
     // Get the modal
-    var modalid = document.getElementById("myModal" + id);
+    var modalid = document.getElementById("myModal2");
 
     // Get the button that opens the modal
     var btnid = document.getElementById("myBtn" + id);

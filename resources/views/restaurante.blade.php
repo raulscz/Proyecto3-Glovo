@@ -30,21 +30,11 @@
                   <div class="mitad">
                     @foreach ($sec as $item2)
                         <div class="mitad_mitad">
-                          <button class="btn_frm" id="myBtn{{$item2->id}}" onclick="modal_sec({{$item2->id}});"><h3>{{$item2->nombre_seccion}}</h3></button>
-                        </div>
-                        <div id="myModal{{$item2->id}}" class="modal">
-
-                          <div class="modal-content">
-                            <span class="close">&times;</span>
-                              <div class="register" id="content_regis">
-                                <h1>{{$item2->nombre_plato}}</h1>
-                              </div>
-                          </div>
+                          <button class="btn_frm" id="myBtn{{$item2->id}}" onclick="seccionJS({{$item2->id}},{{$item->id}}); modal_sec({{$item2->id}});"><h3>{{$item2->nombre_seccion}}</h3></button>
                         </div>
                     @endforeach
                   </div>
                 </div>
-                <p>{{$item->desc_resta}}</p>
           @endforeach
       </div>
     </div>
@@ -82,6 +72,17 @@
               </form>
               <p>¿No tienes una cuenta todavía? <button class="btn_mostrar" onclick="mostrarreg();" id="btn_regis">Registrarme</button></p>
           </div>
+      </div>
+    </div>
+
+    {{-- Otro Modal --}}
+    <div id="myModal2" class="modal">
+
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div class="cont_sec" id="cont_sec">
+          
+        </div>
       </div>
     </div>
 
