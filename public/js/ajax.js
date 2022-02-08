@@ -1,26 +1,6 @@
 window.onload = function() {
 
-    /*CODIGO MODAL*/
 
-    // Get the modal
-    modal = document.getElementById("myModal");
-
-    // Get the <span> element that closes the modal
-    span = document.getElementsByClassName("close")[0];
-
-
-
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function() {
-        modal.style.display = "none";
-    }
-
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
 }
 
 function abrirModal(id, nombre) {
@@ -56,6 +36,9 @@ function leerJS() {
     var formData = new FormData();
     formData.append('_token', document.getElementById('token').getAttribute("content"));
     formData.append('filtrocontrolador', document.getElementById('leerajaxhtml').value);
+    if (typeof id != 'undefined') {
+        formData.append('leer_tipo', id);
+    }
 
     /* Inicializar un objeto AJAX */
     var ajax = objetoAjax();
@@ -177,4 +160,25 @@ function editarJS(id_usu) {
     }
 
     ajax.send(formData);
+}
+
+function settypeJS(id_tipo) {
+    //Poner id como indefinido para k no filtre
+    //Add class and remove class si tiene o no clase es el condicional
+    if (typeof id != 'undefined' && id_tipo == id) {
+        var boton = document.getElementsByClassName('transform');
+        for (i = 0; i < boton.length; i++) {
+            boton[i].classList.remove('classtype');
+        }
+        id = undefined;
+        leerJS();
+    } else {
+        var boton = document.getElementsByClassName('transform');
+        for (i = 0; i < boton.length; i++) {
+            boton[i].classList.remove('classtype');
+        }
+        document.getElementById('btn_tipo' + id_tipo).classList.add('classtype');
+        id = id_tipo;
+        leerJS();
+    }
 }

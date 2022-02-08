@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Mail\EnviarMensaje;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\CrearUsuario;
+use Symfony\Component\Console\Input\Input;
 use App\Http\Requests\RegistrarUsuario;
 
 class UsuarioController extends Controller
@@ -120,7 +121,14 @@ class UsuarioController extends Controller
     /*AJAX*/
 
     public function leercontroller(Request $request){
-        $datos=DB::select('select * from tbl_restaurante where nombre_resta like ?',['%'.$request->input('filtrocontrolador').'%']);
+        $leer = $request->input('leer_tipo');
+        if(isset($leer)){
+            $datos=DB::select('select * from tbl_restaurante where nombre_resta like ? AND id_tipo = ?',
+        ['%'.$request->input('filtrocontrolador').'%', $request->input('leer_tipo')]);
+        }else{
+            $datos=DB::select('select * from tbl_restaurante where nombre_resta like ?', ['%'.$request->input('filtrocontrolador').'%']);
+        }
+        
         return response()->json($datos);
     }
 

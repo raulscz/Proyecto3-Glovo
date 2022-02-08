@@ -126,11 +126,14 @@ header {
 
 .rest {
     background-color: white;
+    width: 100%;
+    margin: 0;
 }
 
 .img_color {
-    background-color: white;
+    color: white;
     width: 100%;
+    height: auto;
 }
 
 .landing-highlights-container__curve {
@@ -348,4 +351,57 @@ footer {
     left: 0px;
     bottom: 0px;
     display: block;
+}
+
+.btn_frm {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    width: 100%;
+    padding: 0;
+}
+
+.classtype {
+    transform: scale(1.12);
+    -webkit-animation-timing-function: cubic-bezier(.075, .82, .165, 1);
+    animation-timing-function: cubic-bezier(.075, .82, .165, 1);
+    box-shadow: 0 2px 17px 0 #000000;
+    outline: none;
+}
+
+.img_resta {
+    width: 92.5%;
+    height: 350px;
+    border-radius: 10px;
+}
+
+.restaurante {
+    display: block;
+    width: 80%;
+    margin-left: 12%;
+    background-color: white;
+}
+
+.classmitad {
+    width: 45%;
+    margin: 0.5%;
+    display: flex;
+}
+
+.d_flex {
+    display: flex;
+}
+
+.mitad_mitad {
+    display: flex;
+    flex-flow: row wrap;
+    width: 44%;
+    height: 20%;
+    margin: 0.5%;
+    border-top: 10px;
+    float: left;
+    background-color: grey;
+    border-radius: 10px;
+    text-align: center;
+    color: white;
 }

@@ -112,4 +112,4 @@ Route::post('leer',[UsuarioController::class, 'leerController']);
 Route::post('/shows', [RestauranteController::class, 'filtroRestauranteAjax']);
 
 /*Tipos restaurantes*/
-Route::get('tipo_rest/{id}',[RestauranteController::class, 'tipo_rest']);
+Route::get('rest/{id}',[RestauranteController::class, 'rest']);
