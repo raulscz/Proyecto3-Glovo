@@ -11,32 +11,74 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulario Actualizar Restaurante</title>
+    <link rel="stylesheet" href="{!! asset('css/styles.css') !!}">
 </head>
-<body>
-<form action="{{url('modificarRestaurante')}}" method="post" enctype="multipart/form-data">
-        @csrf
-        {{method_field('PUT')}}
-        <p>Nombre Restaurante</p>
-        <input type="text" name="nombre_resta" value="{{$restaurante->nombre_resta}}">
-        <p>Descripción Resturante</p>
-        <textarea name="desc_resta" rows="4" cols="50">{{$restaurante->desc_resta}}</textarea>
-        <p>Horario Apertura</p>
-        <input type="time" name="horario_ini_resta" value="{{$restaurante->horario_ini_resta}}">
-        <p>Horario Cierre</p>
-        <input type="time" name="horario_fi_resta" value="{{$restaurante->horario_fi_resta}}">
-        <p>Foto Restaurante</p>
-        <input type="file" name="img_resta" value="{{$restaurante->img_resta}}">
-        <p>Tipo Restaurante</p>
-        <select name="id_tipo">
-            <option value="{{$restaurante->id_tipo}}">{{$restaurante->nombre_tipo}}</option>
-            @foreach($listaTipo as $tipo)
-                <option value="{{$tipo->id}}">{{$tipo->nombre_tipo}}</option>
-            @endforeach
-        </select>
-        <div>
-            <input type="hidden" name="id" value="{{$restaurante->id}}">
-            <input type="submit" value="Enviar">
+<body class="form">
+    <div class="row flex-cv">
+        <div class="cuadroForm">
+            <form action="{{url('modificarRestaurante')}}" method="post" enctype="multipart/form-data" class="formulario" id="formulario">
+                @csrf
+                {{method_field('PUT')}}
+                <!-- Grupo: Nombre -->
+                <div class="formulario__grupo" id="">
+                    <label class="formulario__label">Nombre Usuario</label>
+                    <div class="formulario__grupo-input">
+                        <input type="text" class="formulario__input" name="nombre_resta" id="" placeholder="Pancracio" value="{{$restaurante->nombre_resta}}">
+                    </div>
+                </div>
+
+                <!-- Grupo: Descripción -->
+                <div class="formulario__grupo" id="">
+                    <label class="formulario__label">Descripción</label>
+                    <div class="formulario__grupo-input">
+                        <textarea class="formulario__input" id="" name="desc_resta" rows="4" cols="50">{{$restaurante->desc_resta}}</textarea>
+                    </div>
+                </div>
+
+                <!-- Grupo: Horario -->
+                <div class="formulario__grupo" id="">
+                    <label class="formulario__label">Horario Apertura</label>
+                    <div class="formulario__grupo-input">
+                        <input type="time" class="formulario__input" id="" placeholder="12345678L" name="horario_ini_resta" value="{{$restaurante->horario_ini_resta}}">
+                    </div>
+                </div>
+
+                <!-- Grupo: Horario 2 -->
+                <div class="formulario__grupo" id="">
+                    <label class="formulario__label">Horario Cierre</label>
+                    <div class="formulario__grupo-input">
+                        <input type="time" class="formulario__input" id="" placeholder="edad" name="horario_fi_resta" value="{{$restaurante->horario_fi_resta}}">
+                    </div>
+                </div>
+
+                <!-- Grupo: Imagen -->
+                <div class="formulario__grupo">
+                    <label class="formulario__label">Imagen</label>
+                    <div class="formulario__grupo-input">
+                        <input type="file" class="formulario__input" name="img_resta">
+                    </div>
+                </div>
+
+                <!-- Grupo: Tipo -->
+                <div class="formulario__grupo">
+                    <label class="formulario__label">Tipo</label>
+                    <div class="formulario__grupo-input">
+                        <select name="id_tipo">
+                            <option value="{{$restaurante->id_tipo}}">{{$restaurante->nombre_tipo}}</option>
+                            @foreach($listaTipo as $tipo)
+                                <option value="{{$tipo->id}}">{{$tipo->nombre_tipo}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="formulario__grupo formulario__grupo-btn-enviar">
+                    <input type="hidden" name="id" value="{{$restaurante->id}}">
+                    <button type="submit" value="Enviar" class="formulario__btn">Enviar</button>
+                </div>
+            </form>
         </div>
-    </form>
+    </div>
+	<script src="js/formulario.js"></script>
+    <script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
 </body>
 </html>
