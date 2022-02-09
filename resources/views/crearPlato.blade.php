@@ -49,7 +49,7 @@
           <div class="formulario__grupo" id="">
             <label class="formulario__label">Precio Plato</label>
             <div class="formulario__grupo-input">
-              <input type="number" class="formulario__input" name="desc_plato" id="" step="0.1" placeholder="5.99" value="{{old('precio_plato')}}">
+              <input type="number" class="formulario__input" name="precio_plato" id="" placeholder="5,99" value="{{old('precio_plato')}}">
               @error('precio_plato')
                 <br>
                 {{$message}}

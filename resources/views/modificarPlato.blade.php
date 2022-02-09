@@ -39,7 +39,7 @@
                 <div class="formulario__grupo" id="">
                     <label class="formulario__label">Precio Plato</label>
                     <div class="formulario__grupo-input">
-                        <input type="number" class="formulario__input" name="desc_plato" id="" step="0.1" placeholder="5.99" value="{{$Plato->precio_plato}}">
+                        <input type="number" class="formulario__input" name="precio_plato" id="" step="0.1" placeholder="5.99" value="{{$Plato->precio_plato}}">
                     </div>
                 </div>
                 <!-- Grupo: Imagen -->

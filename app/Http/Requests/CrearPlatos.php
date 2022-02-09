@@ -26,7 +26,7 @@ class CrearPlatos extends FormRequest
         return [
             'nombre_plato'=>'required|string|max:30',
             'desc_plato'=>'required|string|max:100',
-            'precio_plato'=>'required',
+            'precio_plato'=>'required|numeric',
             'img_plato'=>'required|mimes:jpg,png,jpeg,webp,svg'
         ];
     }
