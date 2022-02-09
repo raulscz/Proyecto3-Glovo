@@ -224,9 +224,9 @@ class RestauranteController extends Controller
         if ($request->hasFile('img_plato')) {
             $foto = DB::table('tbl_plato')->select('img_plato')->where('id','=',$request['id'])->first();
             if ($foto->img_plato != null) {
-                Storage::delete('public/'.$foto->img_plato);
+                Storage::delete('public/uploads/'.$foto->img_plato);
             }
-            $datos['img_plato'] = $request->file('img_plato')->store('uploads','public');
+            $datos['img_plato'] = $request->file('img_plato')->store('');
         }else{
             $foto = DB::table('tbl_plato')->select('img_plato')->where('id','=',$request['id'])->first();
             $datos['img_plato'] = $foto->img_plato;

@@ -91,7 +91,7 @@ class UsuarioController extends Controller
         return view('modificarUser',compact('Usuario'));
     }
 
-    public function modificarUsuarioPut(Request $request){
+    public function modificarUsuarioPut(CrearUsuario $request){
         $datos = $request->except('_token','_method');
         $datosUser = $request->except('_token','_method','nombre_rol');
         try{
