@@ -103,13 +103,11 @@ Route::delete('eliminarPlato/{id}',[RestauranteController::class, 'eliminarPlato
 //Leer con AJAX
 Route::post('leer',[UsuarioController::class, 'leerController']);
 
-/*AJAX*/
-
-//Leer con AJAX
-Route::post('leer',[UsuarioController::class, 'leerController']);
-
 /*Filtro*/
 Route::post('/shows', [RestauranteController::class, 'filtroRestauranteAjax']);
 
 /*Tipos restaurantes*/
 Route::get('rest/{id}',[RestauranteController::class, 'rest']);
+
+/* Ajax platos */
+Route::post('mostrar_sec', [RestauranteController::class, 'mostrar_sec']);
