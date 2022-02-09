@@ -27,7 +27,7 @@ class CrearPlatos extends FormRequest
             'nombre_plato'=>'required|string|max:30',
             'desc_plato'=>'required|string|max:100',
             'precio_plato'=>'required|numeric',
-            'img_plato'=>'required|mimes:jpg,png,jpeg,webp,svg'
+            'img_plato'=>'mimes:jpg,png,jpeg,webp,svg'
         ];
     }
 }

@@ -24,7 +24,11 @@
                 <div class="form-group">
                     <p>Nombre Dirección:</p>
                     <div>
-                    <input  class="botoncPanel" type="text" name="direccion_resta" value="{{$Direccion->direccion_resta}}">
+                        <input  class="botoncPanel" type="text" name="direccion_resta" value="{{$Direccion->direccion_resta}}">
+                        @error('direccion_resta')
+                            <br>
+                            {{$message}}
+                        @enderror
                     </div>
                 </div>
                 <br>

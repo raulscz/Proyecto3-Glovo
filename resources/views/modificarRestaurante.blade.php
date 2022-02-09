@@ -24,6 +24,10 @@
                     <label class="formulario__label">Nombre Usuario</label>
                     <div class="formulario__grupo-input">
                         <input type="text" class="formulario__input" name="nombre_resta" id="" placeholder="Pancracio" value="{{$restaurante->nombre_resta}}">
+                        @error('nombre_resta')
+                          <br>
+                          {{$message}}
+                        @enderror
                     </div>
                 </div>
 
@@ -32,6 +36,10 @@
                     <label class="formulario__label">Descripción</label>
                     <div class="formulario__grupo-input">
                         <textarea class="formulario__input" id="" name="desc_resta" rows="4" cols="50">{{$restaurante->desc_resta}}</textarea>
+                        @error('desc_resta')
+                          <br>
+                          {{$message}}
+                        @enderror
                     </div>
                 </div>
 
@@ -40,6 +48,10 @@
                     <label class="formulario__label">Horario Apertura</label>
                     <div class="formulario__grupo-input">
                         <input type="time" class="formulario__input" id="" placeholder="12345678L" name="horario_ini_resta" value="{{$restaurante->horario_ini_resta}}">
+                        @error('horario_ini_resta')
+                          <br>
+                          {{$message}}
+                        @enderror
                     </div>
                 </div>
 
@@ -48,6 +60,10 @@
                     <label class="formulario__label">Horario Cierre</label>
                     <div class="formulario__grupo-input">
                         <input type="time" class="formulario__input" id="" placeholder="Horario" name="horario_fi_resta" value="{{$restaurante->horario_fi_resta}}">
+                        @error('horario_fi_resta')
+                          <br>
+                          {{$message}}
+                        @enderror
                     </div>
                 </div>
 
@@ -56,6 +72,10 @@
                     <label class="formulario__label">Imagen</label>
                     <div class="formulario__grupo-input">
                         <input type="file" class="formulario__input" name="img_resta">
+                        @error('img_resta')
+                          <br>
+                          {{$message}}
+                        @enderror
                     </div>
                 </div>
 
@@ -64,6 +84,10 @@
                     <label class="formulario__label">Correo Responsable</label>
                     <div class="formulario__grupo-input">
                         <input type="text" class="formulario__input" id="" placeholder="correo" name="correo_responsable" value="{{$restaurante->correo_responsable}}">
+                        @error('correo_responsable')
+                          <br>
+                          {{$message}}
+                        @enderror
                     </div>
                 </div>
 
@@ -77,6 +101,10 @@
                                 <option value="{{$tipo->id}}">{{$tipo->nombre_tipo}}</option>
                             @endforeach
                         </select>
+                        @error('id_tipo')
+                            <br>
+                            {{$message}}
+                        @enderror
                     </div>
                 </div>
                 <div class="formulario__grupo formulario__grupo-btn-enviar">

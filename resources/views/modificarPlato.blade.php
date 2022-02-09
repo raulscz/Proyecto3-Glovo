@@ -26,6 +26,10 @@
                     <label class="formulario__label">Nombre Plato</label>
                     <div class="formulario__grupo-input">
                         <input type="text" class="formulario__input" name="nombre_plato" id="" placeholder="Pancracio" value="{{$Plato->nombre_plato}}">
+                        @error('nombre_plato')
+                            <br>
+                            {{$message}}
+                        @enderror
                     </div>
                 </div>
                 <!-- Grupo: Descripción -->
@@ -33,6 +37,10 @@
                     <label class="formulario__label">Descripción Plato</label>
                     <div class="formulario__grupo-input">
                         <input type="text" class="formulario__input" name="desc_plato" id="" placeholder="Pancracio" value="{{$Plato->desc_plato}}">
+                        @error('desc_plato')
+                            <br>
+                            {{$message}}
+                        @enderror
                     </div>
                 </div>
                 <!-- Grupo: Precio -->
@@ -40,6 +48,10 @@
                     <label class="formulario__label">Precio Plato</label>
                     <div class="formulario__grupo-input">
                         <input type="number" class="formulario__input" name="precio_plato" id="" step="0.1" placeholder="5.99" value="{{$Plato->precio_plato}}">
+                        @error('precio_plato')
+                            <br>
+                            {{$message}}
+                        @enderror
                     </div>
                 </div>
                 <!-- Grupo: Imagen -->
@@ -47,6 +59,10 @@
                     <label class="formulario__label">Imagen Plato</label>
                     <div class="formulario__grupo-input">
                         <input type="file" class="formulario__input" name="img_plato" id="" value="{{$Plato->img_plato}}">
+                        @error('img_plato')
+                            <br>
+                            {{$message}}
+                        @enderror
                     </div>
                 </div>
                 <br>
