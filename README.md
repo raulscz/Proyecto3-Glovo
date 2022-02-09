@@ -1,66 +1,83 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# PROYECTO 3 - GLOVO
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+**Este proyecto trata sobre replicar la página web de GLOVO con los requisitos que nos marcan en el proyecto, ya sea hacer CRUD's o filtros con AJAX.**
 
-## About Laravel
+## Comenzando 🚀
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Si quieres obtener mi proyecto sigue estos pasos:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+1. Copiar el enlace de code en verde para seguidamente hacer un git clone en Visual Studio Code.
+2. Una vez clonado dentro de htdocs ejecutamos en el terminal *composer install*
+3. Luego el env.example lo renombramos a .env 
+4. Seguidamente ejecutamos en el terminal *php artisan key:generate*
+5. Dentro del .env donde pone **DB_DATABASE** ponemos el nombre de la base de datos.
+6. Insertar la base de datos al phpmyadmin con las credenciales correctas en tu caso.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-## Learning Laravel
+## Pre-requisitos 📋
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### EDITOR DE CÓDIGO-> VISUAL STUDIO CODE
+### INSTALAR XAMPP: https://www.apachefriends.org/es/index.html
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Acceso login
 
-## Laravel Sponsors
+Hosting -> https://proyecto2davidortega.000webhostapp.com/view/login.php
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+```
+USUARIO  |  CONTRASEÑA
+-----------------------
+David    |  qweQWE123   
+Profesor |  qweQWE123
+Cambrer  |  asdASD123
 
-### Premium Partners
+David y Profesor son admins, mientras que Cambrer solo puede hacer reservas y mirarlas.
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[CMS Max](https://www.cmsmax.com/)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-- **[Romega Software](https://romegasoftware.com)**
+## Instalación 🔧
+```
+-Meter los archivos previamente descargados en c:\xampp\htdocs\www\proyecto2.
+-Tener activados los servicios Apache y MySQL en XAMPP.
 
-## Contributing
+NOTA: Este proyecto está pensado para usarse con phpmyadmin.
+```
+### Crear carpeta dentro de services donde está config.php y poner lo siguiente
+```
+<?php
+require_once '../services/config.php';
+$servidor= "mysql:host=".SERVIDOR."; dbname=".BD; 
+try{
+    $pdo=new PDO($servidor,USUARIO,PASSWORD,array(PDO::MYSQL_ATTR_INIT_COMMAND=>"SET NAMES UTF8"));
+}catch(PDOException $e){
+    echo $e->getMessage();
+    echo "<script> alert('Error de conexion')</script>";
+}
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+$host = "localhost";
+$usr = "root";
+$pwd = "";
+$db = "bd_restaurant";
 
-## Code of Conduct
+$connection = new mysqli("$host", "$usr", "$pwd",$db);
+?>
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Despliegue 📦
 
-## Security Vulnerabilities
+Para desplegar el proyecto deberemos seleccionar un hosting gratuito, ya sea 000webhost o infinityfree por ejemplo. En mi caso utilizaré 000webhost.
+¡En internet hay miles de tutoriales que nos enseñan a desplegar nuestro proyecto!
+## Construido con 🛠️
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+    PHP 
+    JAVASCRIPT
+    MYSQL
+    CSS
 
-## License
+## Autor ✒️
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+    David Ortega Colomo   -   Estudiante DAW2
+
+## Agradecimientos 🍺
+
+    Gracias a los profesores por ayudarme a desarrollar mi tarea cuando estaba colapsado y gracias a mis compañeros por echarme una ayudita
+
+    Si te ha quedado alguna duda sobre el proyecto no dudes en contactarme por correo -> 100006394.joan23@fje.edu
