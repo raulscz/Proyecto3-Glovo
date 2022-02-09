@@ -33,6 +33,7 @@
                 <th>NOMBRE</th>
                 <th>DESCRIPCIÓN</th>
                 <th>HORARIO</th>
+                <th>RESPONSABLE</th>
                 <th>TIPO</th>
                 <th>FOTO</th>
                 <th colspan="4">ACCIONES</th>
@@ -43,6 +44,7 @@
                     <td>{{$restaurante->nombre_resta}}</td>
                     <td>{{$restaurante->desc_resta}}</td>
                     <td>{{$restaurante->horario_ini_resta}}-{{$restaurante->horario_fi_resta}}</td>
+                    <td>{{$restaurante->correo_responsable}}</td>
                     <td>{{$restaurante->nombre_tipo}}</td>
                     <td style="padding: auto; text-align: center"><img src="{{asset('storage').'/'.$restaurante->img_resta}}" width="100"></td>
                     <td><form  action="{{url('eliminarRestaurante/'.$restaurante->id)}}" method="POST">

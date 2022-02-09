@@ -47,7 +47,7 @@
                 <div class="formulario__grupo" id="">
                     <label class="formulario__label">Horario Cierre</label>
                     <div class="formulario__grupo-input">
-                        <input type="time" class="formulario__input" id="" placeholder="edad" name="horario_fi_resta" value="{{$restaurante->horario_fi_resta}}">
+                        <input type="time" class="formulario__input" id="" placeholder="Horario" name="horario_fi_resta" value="{{$restaurante->horario_fi_resta}}">
                     </div>
                 </div>
 
@@ -56,6 +56,14 @@
                     <label class="formulario__label">Imagen</label>
                     <div class="formulario__grupo-input">
                         <input type="file" class="formulario__input" name="img_resta">
+                    </div>
+                </div>
+
+                <!-- Grupo: Correo -->
+                <div class="formulario__grupo" id="">
+                    <label class="formulario__label">Correo Responsable</label>
+                    <div class="formulario__grupo-input">
+                        <input type="text" class="formulario__input" id="" placeholder="correo" name="correo_responsable" value="{{$restaurante->correo_responsable}}">
                     </div>
                 </div>
 

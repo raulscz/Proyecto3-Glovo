@@ -157,6 +157,12 @@ class RestauranteController extends Controller
             DB::beginTransaction();
             DB::table('tbl_restaurante')->where('id','=',$datos['id'])->update($datos);
             DB::commit();
+            $msj = "Se ha modificado tu restaurate con exito";
+            $sub = "Modificación Restaurante";
+            $datos = array('message'=>$msj);
+            $enviar = new EnviarMensaje($datos);
+            $enviar -> sub = $sub;
+            Mail::to($request->input('correo_responsable'))->send($enviar);
         } catch (\Exception $e) {
             DB::rollBack();
             return $e->getMessage();
@@ -291,7 +297,10 @@ class RestauranteController extends Controller
         }
         return redirect('mostrarRestaurantes');
     }
-    /*Filtro*/
+    /*Correo*/
+    public function correoPersona(Request $request){
+        
+    }
 
     /**
      * Display a listing of the resource.
