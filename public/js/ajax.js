@@ -60,7 +60,7 @@ function leerJS() {
                 recarga += '<form action="rest/' + respuesta[i].id + '" method="get">';
                 /* recarga += '<input type="hidden" name="_method" value="get" id="rest/' + respuesta[i].id + '">'; */
                 /*                 recarga += '<img src="uploads/' + respuesta[i].img_resta + '" style="width:100%;">'; */
-                recarga += '<button class="btn_frm"><img src="../public/uploads/' + respuesta[i].img_resta + '"></button>';
+                recarga += '<button class="btn_frm"><img src="../storage/app/public/' + respuesta[i].img_resta + '"></button>';
                 recarga += '</form>';
                 recarga += '</div>';
                 recarga += '<div class="bar_res">'
@@ -206,7 +206,7 @@ function seccionJS( /* id,  */ idrest, id_sec) {
                 recarga += '<div class="flex_men">';
                 recarga += '<div><h2>' + respuesta[i].nombre_plato + '-' + respuesta[i].precio_plato + '€</h2></div>';
                 recarga += '<div>';
-                recarga += '<div class="div_men"><img src=../uploads/' + respuesta[i].img_plato + '></div>';
+                recarga += '<div class="div_men"><img src=../../storage/app/public/' + respuesta[i].img_plato + '></div>';
                 recarga += '<div class="div_men"><p>' + respuesta[i].desc_plato + '</p></div>';
                 recarga += '</div>';
                 recarga += '</div>';

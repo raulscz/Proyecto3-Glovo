@@ -26,7 +26,7 @@
           @foreach ($datos as $item)
                 <div><h2>{{$item->nombre_resta}}</h2></div>
                 <div class="d_flex">
-                  <div class="mitad"><img class="img_resta" src="../../public/uploads/{{$item->img_resta}}"></div>
+                  <div class="mitad"><img class="img_resta" src="{{asset('storage').'/'.$item->img_resta}}"></div>
                   <div class="mitad">
                     @foreach ($sec as $item2)
                         <div class="mitad_mitad">
