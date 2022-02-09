@@ -25,7 +25,7 @@
       <div class="tipo_rest">
         @foreach ($tipo as $item)
           <div>
-              <button class="tipos transform" id="btn_tipo{{$item->id}}" onclick="settypeJS({{$item->id}})"><img class="img_bt" src="../public/uploads/{{$item->img_tipo}}"><br>{{$item->nombre_tipo}}</button>
+              <button class="tipos transform" id="btn_tipo{{$item->id}}" onclick="settypeJS({{$item->id}})"><img class="img_bt" src="{{asset('storage').'/'.$item->img_tipo}}"><br>{{$item->nombre_tipo}}</button>
           </div>
         @endforeach
       </div>
@@ -42,7 +42,7 @@
             <div class="cont_res">
               <div class="tam_res">
                 <form action="{{url('rest/'.$item->id)}}" method="get">
-                  <button class="btn_frm"><img src="../public/uploads/{{$item->img_resta}}"></button>
+                  <button class="btn_frm"><img src="{{asset('storage').'/'.$item->img_resta}}"></button>
                 </form>
               </div>
                 <div class="bar_res">
