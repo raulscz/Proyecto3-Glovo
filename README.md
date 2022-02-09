@@ -25,9 +25,6 @@ Si quieres obtener nuestro proyecto sigue estos pasos:
      CORREO       |  CONTRASEÑA
 -----------------------
 admin@admin.com   |     1234  
-prueba@prueba.com |   12345678
-
-admin@admin. com es administrador, mientras que prueba@prueba es usuario.
 ```
 
 ## Construido con 🛠️
