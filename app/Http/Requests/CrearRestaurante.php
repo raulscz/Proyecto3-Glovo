@@ -29,7 +29,8 @@ class CrearRestaurante extends FormRequest
             'horario_ini_resta'=>'required',
             'horario_fi_resta'=>'required',
             'id_tipo'=>'required',
-            'img_resta'=>'required|mimes:jpg,png,jpeg,webp,svg|max:2048'
+            'img_resta'=>'required|mimes:jpg,png,jpeg,webp,svg|max:2048',
+            'correo_responsable'=>'required|string|max:30',
         ];
     }
 }
