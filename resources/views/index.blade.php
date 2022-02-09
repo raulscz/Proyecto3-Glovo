@@ -52,9 +52,9 @@
           @endforeach
       </div>
     </div>
-    <div class="img_color">
+{{--     <div class="img_color">
       <img src="https://res.cloudinary.com/glovoapp/image/fetch//q_auto/https://glovoapp.com/images/svg/curve--small.svg" class="landing-highlights-container__curve" >
-    </div>
+    </div> --}}
 
     <!--Modal-->
     <div id="myModal" class="modal">
@@ -93,7 +93,16 @@
       </div>
     </div>
     <footer>
-      
+      <div class="footer-basic">
+        <img src="https://res.cloudinary.com/glovoapp/image/fetch//q_auto/https://glovoapp.com/images/glovo-white.svg">
+            <ul class="list-inline">
+                <li class="list-inline-item"><a href="#">Inicio</a></li>
+                <li class="list-inline-item"><a href="#">Acerca</a></li>
+                <li class="list-inline-item"><a href="#">Términos</a></li>
+                <li class="list-inline-item"><a href="#">Politicas de Privacidad</a></li>
+            </ul>
+            <p class="copyright">David Ortega Raúl Santacruz Daniel Ruano© 2022</p>
+          </div>
     </footer>
 </body>
 </html>

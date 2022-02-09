@@ -382,7 +382,17 @@ class RestauranteController extends Controller
 
     public function rest($id){
         $datos = DB::table("tbl_restaurante")->select('*')->where('id','=',$id)->get();
-        $sec = DB::table("tbl_seccion")->join("tbl_plato", "tbl_seccion.id", "=", "tbl_plato.id_seccion")->select('*')->where('id_resta', '=', $id)->get();
+        $sec = DB::table("tbl_seccion")->select('*')->where('id_resta', '=', $id)->get();
         return view('restaurante', compact('datos', 'sec'));
+    }
+
+    public function mostrar_sec(Request $request){
+        /* $id_plato = $request->input('id_plat'); */
+        $id_rest = $request->input('id_rest');
+        $id_seccion = $request->input('id_sec');
+        $datos = DB::table("tbl_restaurante")->join("tbl_seccion", "tbl_restaurante.id", "=", "tbl_seccion.id_resta")
+        ->join("tbl_plato", "tbl_seccion.id", "=", "tbl_plato.id_seccion")->select('*')
+        ->where('tbl_restaurante.id', '=', $id_rest)->where('tbl_seccion.id', '=', $id_seccion)->get();
+        return response()->json($datos);
     }
 }

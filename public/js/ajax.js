@@ -57,7 +57,11 @@ function leerJS() {
             for (let i = 0; i < respuesta.length; i++) {
                 recarga += '<div class="cont_res">';
                 recarga += '<div class="tam_res">';
-                recarga += '<img src="uploads/' + respuesta[i].img_resta + '" style="width:100%;">';
+                recarga += '<form action="rest/' + respuesta[i].id + '" method="get">';
+                /* recarga += '<input type="hidden" name="_method" value="get" id="rest/' + respuesta[i].id + '">'; */
+                /*                 recarga += '<img src="uploads/' + respuesta[i].img_resta + '" style="width:100%;">'; */
+                recarga += '<button class="btn_frm"><img src="../public/uploads/' + respuesta[i].img_resta + '"></button>';
+                recarga += '</form>';
                 recarga += '</div>';
                 recarga += '<div class="bar_res">'
                 recarga += '<span><b>' + respuesta[i].nombre_resta + '</b></span>';
@@ -181,4 +185,34 @@ function settypeJS(id_tipo) {
         id = id_tipo;
         leerJS();
     }
+}
+
+function seccionJS( /* id,  */ idrest, id_sec) {
+    var tabla = document.getElementById("cont_sec");
+    var formData = new FormData();
+    formData.append('_token', document.getElementById('token').getAttribute("content"));
+    /* formData.append('id_plat', id); */
+    formData.append('id_rest', idrest);
+    formData.append('id_sec', id_sec)
+
+    var ajax = objetoAjax();
+
+    ajax.open("POST", "../mostrar_sec", true);
+    ajax.onreadystatechange = function() {
+        if (ajax.readyState == 4 && ajax.status == 200) {
+            var respuesta = JSON.parse(this.responseText);
+            var recarga = '';
+            for (let i = 0; i < respuesta.length; i++) {
+                recarga += '<div class="flex_men">';
+                recarga += '<div><h2>' + respuesta[i].nombre_plato + '-' + respuesta[i].precio_plato + '€</h2></div>';
+                recarga += '<div>';
+                recarga += '<div class="div_men"><img src=../uploads/' + respuesta[i].img_plato + '></div>';
+                recarga += '<div class="div_men"><p>' + respuesta[i].desc_plato + '</p></div>';
+                recarga += '</div>';
+                recarga += '</div>';
+            }
+            tabla.innerHTML = recarga;
+        }
+    }
+    ajax.send(formData);
 }
