@@ -17,10 +17,6 @@ use App\Http\Requests\RegistrarUsuario;
 class UsuarioController extends Controller
 {
     /*Login & Logout*/
-    // public function login(){
-    //     return view('login');
-    // }
-
     public function loginP(Request $request){
         $datos= $request->except('_token','_method');
         $user=DB::table("tbl_rol")->join('tbl_user', 'tbl_rol.id', '=', 'tbl_user.id_rol')->where('correo_user','=',$datos['correo_user'])->where('pass_user','=',$datos['pass_user'])->first();
@@ -28,14 +24,16 @@ class UsuarioController extends Controller
            $request->session()->put('nombre_admin',$request->correo_user);
            return redirect('cPanelAdmin');
         }else{
-            return view('index');
+            $request->session()->put('nombre_user',$request->correo_user);
+            return view('');
         }
-        return view('index');
+        return view('');
     }
     public function logout(Request $request){
         $request->session()->forget('nombre_admin');
+        $request->session()->forget('nombre_user');
         $request->session()->flush();
-        return redirect('index');
+        return redirect('');
     }
 
     /*Mostrar*/
@@ -83,7 +81,7 @@ class UsuarioController extends Controller
             DB::rollBack();
             return $e->getMessage();
         }
-        return redirect('/index');
+        return redirect('');
     }
     /*Modificar*/
     public function modificarUsuario($id){

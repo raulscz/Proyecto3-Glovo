@@ -24,13 +24,21 @@
                     <div class="form-group">
                         <p>Nombre SECCION:</p>
                         <div>
-                        <input type="text"  class="botoncPanel" name="nombre_seccion" value="{{$Seccion->nombre_seccion}}">
+                            <input type="text"  class="botoncPanel" name="nombre_seccion" value="{{$Seccion->nombre_seccion}}">
+                            @error('nombre_seccion')
+                                <br>
+                                {{$message}}
+                            @enderror
                         </div>
                     </div>
                     <div class="form-group">
                         <p>Imagen:</p>
                         <div>
                             <input type="file" name="img_seccion" value="{{$Seccion->img_seccion}}">
+                            @error('img_seccion')
+                                <br>
+                                {{$message}}
+                            @enderror
                         </div>
                     </div>
                 <div>

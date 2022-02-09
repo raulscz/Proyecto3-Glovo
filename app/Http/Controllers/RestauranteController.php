@@ -57,7 +57,7 @@ class RestauranteController extends Controller
 
         try{
             DB::beginTransaction();
-            DB::table('tbl_restaurante')->insertGetId(["img_resta"=>$datos['img_resta'],"nombre_resta"=>$datos['nombre_resta'],"desc_resta"=>$datos['desc_resta'],"horario_ini_resta"=>$datos['horario_ini_resta'],"horario_fi_resta"=>$datos['horario_fi_resta'],"id_tipo"=>$datos['id_tipo']]);
+            DB::table('tbl_restaurante')->insertGetId(["img_resta"=>$datos['img_resta'],"nombre_resta"=>$datos['nombre_resta'],"desc_resta"=>$datos['desc_resta'],"horario_ini_resta"=>$datos['horario_ini_resta'],"horario_fi_resta"=>$datos['horario_fi_resta'],"correo_responsable"=>$datos['correo_responsable'],"id_tipo"=>$datos['id_tipo']]);
             DB::commit();
         }catch(\Exception $e){
             DB::rollBack();
@@ -139,7 +139,7 @@ class RestauranteController extends Controller
         return view('modificarRestaurante',compact('restaurante','listaTipo'));
     }
 
-    public function modificarRestaurantePut(Request $request){
+    public function modificarRestaurantePut(CrearRestaurante $request){
         $datos=$request->except('_token','_method');
 
         if ($request->hasFile('img_resta')) {
@@ -175,7 +175,7 @@ class RestauranteController extends Controller
         return view('modificarSeccion',compact('Seccion'));
     }
 
-    public function modificarSeccionPut(Request $request){
+    public function modificarSeccionPut(CrearSecciones $request){
         $datos=$request->except('_token','_method');
 
         if ($request->hasFile('img_seccion')) {
@@ -205,7 +205,7 @@ class RestauranteController extends Controller
         return view('modificarDireccion',compact('Direccion'));
     }
 
-    public function modificarDireccionPut(Request $request){
+    public function modificarDireccionPut(CrearDireccion $request){
         $datos=$request->except('_token','_method');
 
         try {
@@ -224,7 +224,7 @@ class RestauranteController extends Controller
         return view('modificarPlato',compact('Plato'));
     }
 
-    public function modificarPlatoPut(Request $request){
+    public function modificarPlatoPut(CrearPlatos $request){
         $datos=$request->except('_token','_method');
 
         if ($request->hasFile('img_plato')) {

@@ -72,6 +72,22 @@
                     <label class="formulario__label">Imagen</label>
                     <div class="formulario__grupo-input">
                         <input type="file" class="formulario__input" name="img_resta">
+                        @error('img_resta')
+                          <br>
+                          {{$message}}
+                        @enderror
+                    </div>
+                </div>
+
+                <!-- Grupo: Correo -->
+                <div class="formulario__grupo" id="">
+                    <label class="formulario__label">Correo Responsable</label>
+                    <div class="formulario__grupo-input">
+                        <input type="text" class="formulario__input" id="" placeholder="correo" name="correo_responsable" value="{{old('correo_responsable')}}">
+                        @error('correo_responsable')
+                          <br>
+                          {{$message}}
+                        @enderror
                     </div>
                 </div>
 

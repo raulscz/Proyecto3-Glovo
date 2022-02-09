@@ -25,7 +25,7 @@ class CrearSecciones extends FormRequest
     {
         return [
             'nombre_seccion'=>'required|string|max:30',
-            'img_seccion'=>'required|mimes:jpg,png,jpeg,webp,svg'
+            'img_seccion'=>'mimes:jpg,png,jpeg,webp,svg'
         ];
     }
 }

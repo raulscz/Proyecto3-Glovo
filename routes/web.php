@@ -16,8 +16,6 @@ use App\Http\Controllers\RestauranteController;
 */
 
 /*Login & Logout*/
-Route::get('', [UsuarioController::class, 'login']);
-
 Route::post('login', [UsuarioController::class, 'loginP']);
 
 Route::get('logout', [UsuarioController::class, 'logout']);
@@ -35,7 +33,7 @@ Route::get('mostrarSecciones/{id}',[RestauranteController::class, 'mostrarSeccio
 
 Route::get('mostrarPlatos/{id}',[RestauranteController::class, 'mostrarPlatos']);
 
-Route::get('/index', [RestauranteController::class, 'index']);
+Route::get('', [RestauranteController::class, 'index']);
 
 /*Crear*/
 Route::get('crearUser',[UsuarioController::class, 'crearUsuario']);

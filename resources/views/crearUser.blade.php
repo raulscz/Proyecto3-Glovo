@@ -25,8 +25,8 @@
                     <div class="formulario__grupo-input">
                         <input type="text" class="formulario__input" name="nombre_user" id="" placeholder="Pancracio" value="{{old('nombre_user')}}">
                         @error('nombre_user')
-                        <br>
-                        {{$message}}
+                            <br>
+                            {{$message}}
                         @enderror
                     </div>
                 </div>
@@ -37,8 +37,8 @@
                     <div class="formulario__grupo-input">
                         <input type="text" class="formulario__input" name="apellido_user" id="" placeholder="Pérez" value="{{old('apellido_user')}}">
                         @error('apellido_user')
-                        <br>
-                        {{$message}}
+                            <br>
+                            {{$message}}
                         @enderror
                     </div>
                 </div>
@@ -49,8 +49,8 @@
                     <div class="formulario__grupo-input">
                         <input type="text" class="formulario__input" name="dni_user" id="" placeholder="12345678L" value="{{old('dni_user')}}">
                         @error('dni_user')
-                        <br>
-                        {{$message}}
+                            <br>
+                            {{$message}}
                         @enderror
                     </div>
                 </div>
@@ -61,8 +61,8 @@
                     <div class="formulario__grupo-input">
                         <input type="number" class="formulario__input" name="edad_user" id="" placeholder="edad" value="{{old('edad_user')}}">
                         @error('edad_user')
-                        <br>
-                        {{$message}}
+                            <br>
+                            {{$message}}
                         @enderror
                     </div>
                 </div>
@@ -73,8 +73,8 @@
                     <div class="formulario__grupo-input">
                         <input type="email" class="formulario__input" name="correo_user" placeholder="correo@correo.com" value="{{old('correo_user')}}">
                         @error('correo_user')
-                        <br>
-                        {{$message}}
+                            <br>
+                            {{$message}}
                         @enderror
                     </div>
                 </div>
@@ -85,8 +85,8 @@
                     <div class="formulario__grupo-input">
                         <input type="password" class="formulario__input" name="pass_user" placeholder="Contraseña" value="{{old('pass_user')}}">
                         @error('pass_user')
-                        <br>
-                        {{$message}}
+                            <br>
+                            {{$message}}
                         @enderror
                     </div>
                 </div>

@@ -24,6 +24,10 @@
                     <label class="formulario__label">Nombre Usuario</label>
                     <div class="formulario__grupo-input">
                         <input type="text" class="formulario__input" name="nombre_user" id="" placeholder="Pancracio" value="{{$Usuario->nombre_user}}">
+                        @error('nombre_user')
+                            <br>
+                            {{$message}}
+                        @enderror
                     </div>
                 </div>
 
@@ -32,6 +36,10 @@
                     <label class="formulario__label">Apellido</label>
                     <div class="formulario__grupo-input">
                         <input type="text" class="formulario__input" name="apellido_user" id="" placeholder="Pérez" value="{{$Usuario->apellido_user}}">
+                        @error('apellido_user')
+                            <br>
+                            {{$message}}
+                        @enderror
                     </div>
                 </div>
 
@@ -40,6 +48,10 @@
                     <label class="formulario__label">DNI</label>
                     <div class="formulario__grupo-input">
                         <input type="text" class="formulario__input" name="dni_user" id="" placeholder="12345678L" value="{{$Usuario->dni_user}}">
+                        @error('dni_user')
+                            <br>
+                            {{$message}}
+                        @enderror
                     </div>
                 </div>
 
@@ -48,6 +60,10 @@
                     <label class="formulario__label">Edad</label>
                     <div class="formulario__grupo-input">
                         <input type="number" class="formulario__input" name="edad_user" id="" placeholder="edad" value="{{$Usuario->edad_user}}">
+                        @error('edad_user')
+                            <br>
+                            {{$message}}
+                        @enderror
                     </div>
                 </div>
 
@@ -56,6 +72,10 @@
                     <label class="formulario__label">Correo Electrónico</label>
                     <div class="formulario__grupo-input">
                         <input type="email" class="formulario__input" name="correo_user" placeholder="correo@correo.com" value="{{$Usuario->correo_user}}">
+                        @error('correo_user')
+                            <br>
+                            {{$message}}
+                        @enderror
                     </div>
                 </div>
 
@@ -64,6 +84,10 @@
                     <label class="formulario__label">Contraseña</label>
                     <div class="formulario__grupo-input">
                         <input type="password" class="formulario__input" name="pass_user" placeholder="Contraseña" value="{{$Usuario->pass_user}}">
+                        @error('pass_user')
+                            <br>
+                            {{$message}}
+                        @enderror
                     </div>
                 </div>
 
@@ -76,6 +100,10 @@
                             <option value="Administrador">Administrador</option>
                             <option value="Usuario">Usuario</option>
                         </select>
+                        @error('nombre_rol')
+                            <br>
+                            {{$message}}
+                        @enderror
                     </div>
                 </div>
                 <div class="formulario__grupo formulario__grupo-btn-enviar">
