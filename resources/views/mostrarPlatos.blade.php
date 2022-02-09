@@ -46,7 +46,7 @@
                     <td>{{$Plato->nombre_plato}}</td>
                     <td>{{$Plato->desc_plato}}</td>
                     <td>{{$Plato->precio_plato}}</td>
-                    <td style="padding: auto; text-align: center"><img src="../../public/uploads/{{$Plato->img_plato}}" width="100"></td>
+                    <td style="padding: auto; text-align: center"><img src="{{asset('storage').'/'.$Plato->img_plato}}" width="100"></td>
                     <td><form  action="{{url('eliminarPlato/'.$Plato->id)}}" method="POST">
                         @csrf
                         <!--{{csrf_field()}}--->
