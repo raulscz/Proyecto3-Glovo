@@ -74,7 +74,11 @@ window.onload = function() {
 // }
 
 function mostrarlog() {
-    window.location.href = "registrarUser";
+    window.location.href = "../public/registrarUser";
+}
+
+function mostrarlog2() {
+    window.location.href = "../registrarUser";
 }
 
 function mostrarreg() {
