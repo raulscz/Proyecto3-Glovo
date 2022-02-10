@@ -184,6 +184,7 @@ table tr:hover {
     border-color: #011f4b;
     background-color: #00A082;
     color: #fff;
+    cursor: pointer;
 }
 
 
