@@ -23,11 +23,11 @@ class UsuarioController extends Controller
         if($user->nombre_rol=='Administrador'){
            $request->session()->put('nombre_admin',$request->correo_user);
            return redirect('cPanelAdmin');
-        }else{
+        }if($user->nombre_rol=='Usuario'){
             $request->session()->put('nombre_user',$request->correo_user);
-            return view('');
+            return redirect('');
         }
-        return view('');
+        return redirect('');
     }
     public function logout(Request $request){
         $request->session()->forget('nombre_admin');
